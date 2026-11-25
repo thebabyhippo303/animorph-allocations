@@ -2,115 +2,231 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Animorph Allocations — Indie games</title>
-<meta name="description" content="An independent game studio: Zom-Bae, preservation work and more.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2311101a'/><path d='M16 25s-9-5.6-9-11.5A4.6 4.6 0 0 1 16 11a4.6 4.6 0 0 1 9 2.5C25 19.4 16 25 16 25z' fill='%23ff4f8b'/></svg>">
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Animorph Allocations Lab | The Nimbus Recompilation Project (TNRP), Kintoun and Hashi</title>
+<meta name="description" content="Animorph Allocations Lab is the studio of TheBabyHippo303 and home of The Nimbus Recompilation Project (TNRP) native ports, the Kintoun matching C permuter and the Hashi console components library.">
+<meta name="keywords" content="Animorph Allocations, Animorph Allocations Lab, TNRP, The Nimbus Recompilation Project, Nimbus Recompilation Project, Kintoun, Hashi, TheBabyHippo303, native ports, decompilation, matching decomp, permuter">
+<meta name="author" content="Animorph Allocations Lab">
+<meta name="theme-color" content="#0a1640">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://thebabyhippo303.github.io/animorph-allocations/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thebabyhippo303.github.io/animorph-allocations/">
+<meta property="og:site_name" content="Animorph Allocations Lab">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Animorph Allocations Lab | TNRP, Kintoun and Hashi">
+<meta property="og:description" content="Home of The Nimbus Recompilation Project (TNRP) native ports, the Kintoun matching C permuter and the Hashi console components library, made by TheBabyHippo303.">
+<meta property="og:image" content="https://thebabyhippo303.github.io/animorph-allocations/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Animorph Allocations Lab in gold pixel type on a navy scanline background, with the TNRP, Kintoun and Hashi projects.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Animorph Allocations Lab | TNRP, Kintoun and Hashi">
+<meta name="twitter:description" content="Home of The Nimbus Recompilation Project (TNRP), Kintoun and Hashi, made by TheBabyHippo303.">
+<meta name="twitter:image" content="https://thebabyhippo303.github.io/animorph-allocations/assets/img/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a1640'/%3E%3Crect x='1' y='1' width='30' height='30' rx='5' fill='none' stroke='%23ffaa1e' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='monospace' font-weight='700' font-size='15' text-anchor='middle' fill='%23fff078'%3EAA%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/PressStart2P-p5.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/VT323-p5.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=2026a">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://thebabyhippo303.github.io/animorph-allocations/#org",
+   "name": "Animorph Allocations Lab",
+   "alternateName": ["Animorph Allocations"],
+   "url": "https://thebabyhippo303.github.io/animorph-allocations/",
+   "sameAs": ["https://nimbusrecomp.org/", "https://github.com/thebabyhippo303", "https://www.reddit.com/user/TheBabyHippo303/"]
+  },
+  {
+   "@type": "WebSite",
+   "name": "Animorph Allocations Lab",
+   "url": "https://thebabyhippo303.github.io/animorph-allocations/",
+   "publisher": {"@id": "https://thebabyhippo303.github.io/animorph-allocations/#org"}
+  },
+  {
+   "@type": "SoftwareApplication",
+   "name": "The Nimbus Recompilation Project",
+   "alternateName": ["TNRP", "The Nimbus Recompilation Project (TNRP)"],
+   "url": "https://nimbusrecomp.org/",
+   "applicationCategory": "GameApplication",
+   "operatingSystem": "Linux, Windows, Android",
+   "softwareVersion": "Alpha 2.3.5",
+   "publisher": {"@id": "https://thebabyhippo303.github.io/animorph-allocations/#org"}
+  },
+  {
+   "@type": "SoftwareSourceCode",
+   "name": "Kintoun",
+   "codeRepository": "https://github.com/thebabyhippo303/kintoun",
+   "programmingLanguage": "Python",
+   "version": "0.8.0",
+   "license": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  {
+   "@type": "SoftwareSourceCode",
+   "name": "Hashi",
+   "codeRepository": "https://github.com/thebabyhippo303/hashi-lib",
+   "programmingLanguage": ["C", "C++"],
+   "license": "https://opensource.org/licenses/MIT"
+  }
+ ]
+}
+</script>
 </head>
 <body>
-<header class="nav">
-  <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span><span data-studio>Animorph Allocations</span></a>
-  <button class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span></button>
-  <nav id="menu">
-    <a href="#zombae">Zom-Bae</a><a href="#sagas">Sagas Decomp</a><a href="#haloid">Haloid</a><a href="#contact">Contact</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Animorph Allocations Lab, back to top">
+    <span class="brand-word">Animorph<br>Allocations</span><span class="brand-lab">LAB</span>
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span class="bars"></span></button>
+  <nav id="nav" class="nav" aria-label="Main">
+    <a href="#projects">Projects</a>
+    <a href="#tnrp">TNRP</a>
+    <a href="#kintoun">Kintoun</a>
+    <a href="#hashi">Hashi</a>
   </nav>
 </header>
 
-<main id="top">
-<section class="hero">
-  <div class="orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+<main id="main">
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap">
-    <p class="eyebrow">Independent game studio</p>
-    <h1><span data-studio>Animorph Allocations</span></h1>
-    <p class="lede">A small studio making loud little games for phones, and quietly preserving the ones we grew up with.</p>
-    <div class="cta"><a class="btn primary" href="#zombae">See Zom-Bae</a><a class="btn ghost" href="#contact">Get in touch</a></div>
+    <p class="kicker"><span class="dash" aria-hidden="true"></span>Independent studio lab<span class="dash" aria-hidden="true"></span></p>
+    <h1 id="hero-title"><span class="h1-a">Animorph</span> <span class="h1-b">Allocations</span> <span class="h1-lab">Lab</span></h1>
+    <p class="lede">Home of The Nimbus Recompilation Project (TNRP), Kintoun and Hashi. Native ports, matching decomp tooling and clean room console components, made by TheBabyHippo303.</p>
+    <div class="cta">
+      <a class="btn btn-hot" href="#projects">See the projects</a>
+      <a class="btn btn-ghost" href="https://nimbusrecomp.org/" rel="noopener">Visit nimbusrecomp.org</a>
+    </div>
+    <ul class="hero-stats" aria-label="At a glance">
+      <li><b>15</b><span>native ports in TNRP</span></li>
+      <li><b>v0.8.0</b><span>Kintoun release</span></li>
+      <li><b>24/24</b><span>Hashi tests passing</span></li>
+    </ul>
   </div>
 </section>
 
-<section id="zombae" class="feature reveal">
-  <div class="wrap grid2">
-    <div>
-      <div class="tags"><span class="tag live">In development</span><span class="tag">Android</span><span class="tag">Godot 4.7.2</span></div>
-      <h2 class="zb">Zom-Bae</h2>
-      <p class="tagline">Love bites. Shoot back.</p>
-      <p>One evening every phone in the city got the same notification: <em>“Someone nearby wants to meet you.”</em> Everyone who opened it came home bitten. Now the city is full of the smitten. They don’t hate you. They adore you, and they will not stop coming.</p>
-      <p>Zom-Bae is a cheeky, romance-gothic zombie wave shooter built for touch: pastel streets, endless waves, and tarot-card Herald bosses every five waves.</p>
-      <ul class="feats">
-        <li><b>Five operators</b> — Asuna, Aura, Cosmo, Gremory and Void, each with a signature power, plus a pet companion.</li>
-        <li><b>Signal Breach</b> — the competitive PvPvE mode in the works: rival crews race to plant the Bouquet while the smitten chase whoever is closest.</li>
-        <li><b>Heralds</b> — gothic tarot bosses with attacks you learn to read, dodge and punish.</li>
-        <li><b>Built for phones</b> — touch aim assist and a movable button layout.</li>
-      </ul>
-    </div>
-    <div class="art-zb" aria-hidden="true">
-      <svg viewBox="0 0 300 300">
-        <defs>
-          <radialGradient id="g1" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#ff4f8b" stop-opacity=".55"/><stop offset="1" stop-color="#ff4f8b" stop-opacity="0"/></radialGradient>
-          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7ab0"/><stop offset="1" stop-color="#9b5cff"/></linearGradient>
-        </defs>
-        <circle cx="150" cy="140" r="140" fill="url(#g1)"/>
-        <path class="beat" d="M150 238s-86-52-86-108a46 46 0 0 1 86-22 46 46 0 0 1 86 22c0 56-86 108-86 108z" fill="url(#g2)"/>
-        <path d="M150 108 l-14 36 18 10 -16 40" fill="none" stroke="#11101a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-        <g fill="#11101a"><path d="M118 150 l6 18 6-18z"/><path d="M170 150 l6 18 6-18z"/></g>
-        <circle cx="150" cy="140" r="118" fill="none" stroke="#7df9ff" stroke-width="1.5" stroke-dasharray="4 10" class="spin"/>
-        <g stroke="#7df9ff" stroke-width="2"><line x1="150" y1="6" x2="150" y2="30"/><line x1="150" y1="250" x2="150" y2="274"/><line x1="16" y1="140" x2="40" y2="140"/><line x1="260" y1="140" x2="284" y2="140"/></g>
-      </svg>
-      <p class="note">Original vector art. No release date yet.</p>
-    </div>
-  </div>
-</section>
-
-<section id="sagas" class="feature alt reveal">
-  <div class="wrap grid2 rev">
-    <div class="art-dc" aria-hidden="true">
-      <pre><span class="c">// 0x80012a40</span>
-<span class="k">void</span> fn_80012A40(<span class="k">s32</span> id) {
-    <span class="k">if</span> (id &lt; 0) <span class="k">return</span>;
-    Obj_Update(&amp;objs[id]);
-}
-<span class="ok">✓ matched</span>  <span class="c">byte-identical</span></pre>
-      <div class="meter" role="img" aria-label="Matching in progress"><span></span></div><p class="mlabel">Matching in progress</p>
-    </div>
-    <div>
-      <div class="tags"><span class="tag">Preservation</span><span class="tag">GameCube</span><span class="tag">Fan project</span></div>
-      <h2>Dragon Ball Z: Sagas — GameCube decompilation</h2>
-      <p>A fan matching-decompilation of the GameCube release: rebuilding the game’s code in C, function by function, until it compiles back to byte-identical machine code. The goal is preservation and study.</p>
-      <p>Our internal dashboard tracks total, named and matched functions, overall match percentage, recent matches, the remaining work queue and per-function naming and decompilation attribution.</p>
-      <p class="disclaimer">Unofficial fan project. Not affiliated with, endorsed by or sponsored by the rights holders of Dragon Ball or the game. No original game assets are distributed; you need your own legally obtained copy.</p>
-    </div>
-  </div>
-</section>
-
-<section id="haloid" class="reveal">
+<section class="projects" id="projects" aria-labelledby="projects-title">
   <div class="wrap">
-    <div class="soon">
-      <div class="ring" aria-hidden="true"></div>
-      <div>
-        <div class="tags"><span class="tag">Android</span><span class="tag warn">Coming soon</span></div>
-        <h2>Haloid</h2>
-        <p>A Halo: Combat Evolved Android project. Coming soon.</p>
-        <p class="disclaimer">Unofficial fan project. Not affiliated with, endorsed by or sponsored by Microsoft, Xbox Game Studios or Halo Studios.</p>
+    <h2 class="h2" id="projects-title">Three projects, one lab</h2>
+    <p class="sub">Each project stands on its own. Together they cover playing the games natively, matching their code and rebuilding the hardware around them.</p>
+    <div class="pgrid">
+      <a class="pcard pcard-tnrp" href="#tnrp">
+        <img src="assets/img/nimbus-logo-128.webp" width="64" height="64" alt="" decoding="async">
+        <h3>TNRP</h3>
+        <p>The Nimbus Recompilation Project. Fifteen native ports for Linux, Windows and Android.</p>
+        <span class="pmore">Alpha 2.3.5 out now</span>
+      </a>
+      <a class="pcard pcard-kintoun" href="#kintoun">
+        <img class="pbanner" src="assets/img/kintoun-banner.svg" width="800" height="120" alt="" decoding="async">
+        <h3>Kintoun</h3>
+        <p>Game agnostic matching C permuter and strict ELF verifier for PowerPC, ARM and MIPS decomps.</p>
+        <span class="pmore">GPL 3.0 with output exception</span>
+      </a>
+      <a class="pcard pcard-hashi" href="#hashi">
+        <span class="pglyph pglyph-h" lang="ja" aria-hidden="true">橋</span>
+        <h3>Hashi</h3>
+        <p>Clean room, deterministic C and C++ console hardware and service components.</p>
+        <span class="pmore">MIT licensed</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block block-tnrp" id="tnrp" aria-labelledby="tnrp-title">
+  <div class="wrap">
+    <div class="card">
+      <div class="tnrp-head">
+        <picture><source type="image/webp" srcset="assets/img/nimbus-logo-128.webp"><img class="tnrp-logo" src="assets/img/nimbus-logo-128.png" width="96" height="96" alt="TNRP logo" loading="lazy" decoding="async"></picture>
+        <div>
+          <p class="eyebrow">Fifteen games · native ports</p>
+          <h2 class="card-title" id="tnrp-title">The Nimbus Recompilation Project (TNRP)</h2>
+          <p class="tnrp-tag">Skip the emulator. Ride the&nbsp;Nimbus.</p>
+        </div>
       </div>
+      <p class="badge-line"><span class="pill pill-ok">Out now</span> <b>Alpha 2.3.5</b>, a bug fix update for Nimbus Alpha 2.3. Alpha 2.3 added Bleach: Heat the Soul 7 as game fifteen.</p>
+      <p class="note">TNRP is native ports TheBabyHippo303 made himself. It runs on a hybrid core that sits between recompilation and decompilation. Each game gets its own native core, and those cores run on a shared Nimbus host and renderer. There's no emulator and no interpreter emulating the hardware. Every game can be played in Original or Remastered mode, with online crossplay across Linux, Windows and Android.</p>
+      <ul class="facts">
+        <li><b>15</b><span>games</span></li>
+        <li><b>4</b><span>consoles</span></li>
+        <li><b>3</b><span>platforms</span></li>
+        <li><b>Free</b><span>no ads, no tracking</span></li>
+      </ul>
+      <div class="games">
+        <div class="gcol gc"><h3>GameCube</h3><ul><li>Dragon Ball Z: Budokai</li><li>Dragon Ball Z: Budokai 2</li><li>Dragon Ball Z: Sagas</li></ul></div>
+        <div class="gcol gba"><h3>Game Boy Advance</h3><ul><li>Dragon Ball Z: Supersonic Warriors</li><li>Dragon Ball Z: Taiketsu</li></ul></div>
+        <div class="gcol psp"><h3>PSP</h3><ul><li>Dragon Ball Z: Shin Budokai</li><li>Dragon Ball Z: Shin Budokai Another Road</li><li>Dragon Ball Z: Tenkaichi Tag Team</li><li>Mobile Suit Gundam: Gundam vs. Gundam NEXT PLUS</li><li>Ridge Racer 2</li><li>Bleach: Heat the Soul 7</li></ul></div>
+        <div class="gcol ps2"><h3>PlayStation 2</h3><ul><li>Dragon Ball Z: Budokai Tenkaichi 3</li><li>Dragon Ball Z: Infinite World</li><li>Super Dragon Ball Z</li><li>Naruto Shippuden: Ultimate Ninja 5</li></ul></div>
+      </div>
+      <p class="note small">Coming soon: Yu Yu Hakusho Forever, game 16. Dragon Ball remains the heart of TNRP. You need your own legally obtained disc; TNRP does not provide the games.</p>
+      <p class="cta-row"><a class="btn btn-hot" href="https://nimbusrecomp.org/" rel="noopener">Get TNRP at nimbusrecomp.org</a> <a class="btn btn-ghost" href="https://github.com/thebabyhippo303/nimbus-recompilation-project/releases" rel="noopener">Releases on GitHub</a></p>
     </div>
   </div>
 </section>
 
-<section id="contact" class="reveal">
-  <div class="wrap center">
-    <h2>Say hello</h2>
-    <p>Press, playtests, collaborations or just good zombie puns.</p>
-    <a class="btn primary" id="email" href="mailto:hello@example.com">hello@example.com</a>
+<section class="block block-kintoun" id="kintoun" aria-labelledby="kintoun-title">
+  <div class="wrap">
+    <div class="card">
+      <div class="kintoun-banner"><img src="assets/img/kintoun-banner.svg" width="800" height="120" alt="" loading="lazy" decoding="async"></div>
+      <h2 class="card-title center" id="kintoun-title">Kintoun</h2>
+      <p class="note">Game agnostic matching C permuter and strict ELF verifier for PowerPC, ARM and MIPS decomps. Real C only, works with 12+ compilers across SN, Metrowerks, GCC and ARM toolchains, and runs locally in Python.</p>
+      <p class="note">Kintoun is like a sister of TNRP, and sometimes they work together.</p>
+      <ul class="facts">
+        <li><b>0.8.0</b><span>latest release</span></li>
+        <li><b>12+</b><span>compilers</span></li>
+        <li><b>36,940</b><span>lines of Python</span></li>
+        <li><b>0</b><span>external dependencies</span></li>
+      </ul>
+      <p class="note small">36,940 lines of Python across 72 source files, plus a 2,940 line test suite. Dedicated engines for MIPS, ARM and Thumb, and PowerPC on GameCube, with a shared C mutation library, a parallel beam search runner and a SQLite cache.</p>
+      <p class="note license">GPL 3.0 with an output exception: code you match with Kintoun is yours to license any way you want.</p>
+      <p class="cta-row center"><a class="btn btn-hot" href="https://github.com/thebabyhippo303/kintoun" rel="noopener">Kintoun on GitHub</a></p>
+      <p class="kintoun-tagline">dtk sets up the house, and kintoun helps furnish the rooms</p>
+    </div>
+  </div>
+</section>
+
+<section class="block block-hashi" id="hashi" aria-labelledby="hashi-title">
+  <div class="wrap">
+    <div class="card">
+      <div class="hashi-head">
+        <span class="hashi-kanji" lang="ja" aria-hidden="true">橋</span>
+        <div>
+          <h2 class="card-title" id="hashi-title">Hashi (<span lang="ja" class="hashi-kana">橋</span>, bridge)</h2>
+          <p class="note">Clean room, deterministic C and C++ console hardware and service components, MIT licensed.</p>
+        </div>
+      </div>
+      <h3 class="label">11 components</h3>
+      <ul class="comps">
+        <li><b>PSP SAS</b><span>a 32 voice software audio synthesizer</span></li>
+        <li><b>PSP CSO</b><span>random access reader for CSO and ZSO compressed disc images, with a block cache</span></li>
+        <li><b>PSP IO</b><span>virtual UMD and Memory Stick storage, asynchronous file devices, and state save</span></li>
+        <li><b>PSP MPEG Demux</b><span>PSMF header parser and MPEG program stream video and audio demuxer</span></li>
+        <li><b>PSP Memory Partitions</b><span>deterministic partition memory allocator with low, high, exact address, and aligned policies</span></li>
+        <li><b>PS2 ISO</b><span>ISO9660 disc image reader with large file support and path lookup caching</span></li>
+        <li><b>GameCube Devices</b><span>streaming ADPCM decoder, memory card protocol, and SRAM helpers</span></li>
+        <li><b>GameCube Cheats</b><span>cheat file parser, decryptor, and applier</span></li>
+        <li><b>GBA BIOS</b><span>BIOS software interrupt implementations and a cycle timing model</span></li>
+        <li><b>GBA Audio</b><span>Direct Sound DMA FIFO and PSG mixer</span></li>
+        <li><b>GBA Devices</b><span>bus, clock, DMA, serial EEPROM, IRQ, LCD, memory, MMIO, timers, and display register state</span></li>
+      </ul>
+      <p class="verified"><span class="pill pill-ok">Verified</span> 24/24 tests passing on GCC 14.2 and 15.2 with no warnings, ScanCode Toolkit 32.5.0 every file MIT at score 100, REUSE 6.3.0 compliant.</p>
+      <p class="cta-row center"><a class="btn btn-hot" href="https://github.com/thebabyhippo303/hashi-lib" rel="noopener">Hashi on GitHub</a></p>
+    </div>
   </div>
 </section>
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <p>© <span id="yr">2026</span> <span data-studio>Animorph Allocations</span>. All original artwork is CSS/SVG made by the studio.</p>
-    <p class="small">Dragon Ball and Dragon Ball Z are trademarks of their respective owners. Halo, Halo: Combat Evolved, Xbox and Microsoft are trademarks of Microsoft Corporation. GameCube is a trademark of Nintendo. Android is a trademark of Google LLC. Godot is a trademark of the Godot Foundation. All trademarks belong to their owners and are used here only to describe compatibility or subject matter; no affiliation or endorsement is implied.</p>
+    <p class="foot-brand"><span class="brand-word">Animorph Allocations</span> <span class="brand-lab">LAB</span></p>
+    <p>TNRP, Kintoun and Hashi fall under the Animorph Allocations Lab umbrella. Made by TheBabyHippo303.</p>
+    <p class="foot-links"><a href="https://nimbusrecomp.org/" rel="noopener">nimbusrecomp.org</a> · <a href="https://github.com/thebabyhippo303" rel="noopener">GitHub</a> · <a href="https://www.reddit.com/user/TheBabyHippo303/" rel="noopener">Reddit</a></p>
+    <p class="legal">TNRP is an unofficial fan project and is not affiliated with, endorsed by or sponsored by any rights holder. It does not provide the games themselves: you need your own legally obtained disc. Nintendo GameCube and Game Boy Advance are trademarks of Nintendo. PlayStation, PlayStation&nbsp;2 and PSP are trademarks of Sony Interactive Entertainment. All games, characters, names, artwork, music and trademarks belong to their respective owners.</p>
   </div>
 </footer>
-<script src="main.js"></script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>
