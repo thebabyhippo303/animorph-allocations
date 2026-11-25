@@ -73,3 +73,10 @@ sup{line-height:0}
   .bm-vid{padding:8px}
   .bmc-stk span{font-size:10px}
 }
+
+/* part 2 additions */
+.bmc-sw.n,.bmc-stk .n{background:rgba(120,160,200,.16);border:1px dashed rgba(160,190,225,.5)}
+.bmc-stk .n{color:#a8bcd8;background:rgba(120,160,200,.16)}
+.bm-yt{margin:14px 0 6px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.bm-yt .note{margin:0}
+.bm-yt+.bm-th{margin-top:18px}
