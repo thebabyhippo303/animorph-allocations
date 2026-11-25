@@ -245,12 +245,13 @@
     <div class="card">
       <p class="eyebrow">Public benchmark · Animorph Allocations Lab</p>
       <h2 class="card-title" id="bench-title">Cold Context Gundam 2v2 Benchmark</h2>
-      <p class="note">Can an AI model open the TNRP launcher, start <i>Mobile Suit Gundam: Gundam vs. Gundam NEXT PLUS</i> and win a 2v2 match, working only from what it sees on screen? Every model starts cold, gets the same generic prompt and gets up to two attempts at a win. Six models ran across two parts, three in Part 1 and three more in Part 2, and all six recordings are below.</p>
+      <p class="note">Can an AI model open the TNRP launcher, start <i>Mobile Suit Gundam: Gundam vs. Gundam NEXT PLUS</i> and win a 2v2 match, working only from what it sees on screen? Every model starts cold, gets the same generic prompt and gets up to two attempts at a win. Six models ran across two parts, three in Part 1 and three more in Part 2. Gemini 4 Carbon then got a retry that included a launcher hint, so seven full recordings are below.</p>
       <ul class="facts facts3" aria-label="Benchmark at a glance">
-        <li><b>6</b><span>models tested</span></li>
-        <li><b>4 of 6</b><span>won a match</span></li>
-        <li><b>6 of 6</b><span>reached a 2v2 match</span></li>
+        <li><b>7</b><span>runs across 6 models</span></li>
+        <li><b>5 of 7</b><span>runs won a match</span></li>
+        <li><b>7 of 7</b><span>runs reached a 2v2 match</span></li>
       </ul>
+      <p class="note small">That is 7 runs across 6 models. 4 of 6 models won in their standard run. Gemini 4 Carbon lost its standard run, then won a retry that included a launcher hint, described below.</p>
 
       <h3 class="label">How it works</h3>
       <ul class="bm-list">
@@ -258,6 +259,7 @@
         <li><b>Cold context.</b> Every run starts fresh, with no earlier sessions, no memory of past games and the identical generic prompt.</li>
         <li><b>Two attempts.</b> A model can retry once after a loss. WIN_1 means the first win came on attempt 1 and WIN_2 means it came on attempt 2. LOSS means no win in two attempts.</li>
         <li><b>Recorded live.</b> Each run is screen recorded with a live thought and decision stream beside the game. Proprietary tool details are hidden.</li>
+        <li><b>Retry with a hint.</b> After its standard run, Gemini 4 Carbon got one extra run. That retry was given a hint to press the Super key and search for Nimbus to open the TNRP 2.3.5 launcher. The original runs used the identical generic prompt without that hint.</li>
         <li><b>Verified.</b> Each outcome was checked against the recording and the in game result screen, and each run passed a leak audit.</li>
       </ul>
 
@@ -265,6 +267,7 @@
       <p class="note small">Full runs, shown as recorded with the live decision stream on the right. Compressed for the web.</p>
       <div class="bm-yt">
         <a class="btn btn-hot bm-ytbtn" href="https://youtu.be/a-eVi6wB2D4" target="_blank" rel="noopener">Watch Part 1 on YouTube</a>
+        <a class="btn btn-hot bm-ytbtn" href="https://youtu.be/0FhjotVyR7k" target="_blank" rel="noopener">Watch Part 2 on YouTube</a>
         <p class="note small">We recommend watching at 3x speed through the launcher and 2x speed through the fight.</p>
       </div>
       <h4 class="bm-th">Part 1</h4>
@@ -321,6 +324,18 @@
           <figcaption>Won on attempt 1 with 92.7 seconds left, 2 KOs and 19,610 PTS. Vision. Recording length 4:28, 31 decision turns. The recording starts partway through the launch phase.</figcaption>
         </figure>
       </div>
+      <h4 class="bm-th">Part 2 retry with a hint</h4>
+      <p class="note small">This retry was given a hint to press the Super key and search for Nimbus to open the TNRP 2.3.5 launcher. The original runs used the identical generic prompt without that hint.</p>
+      <div class="bm-videos">
+        <figure class="bm-vid">
+          <div class="bm-vh"><b>Gemini 4 Carbon medium, retry with hint<sup>***</sup></b><span class="bm-tag bm-win">WIN_2</span></div>
+          <video controls preload="metadata" playsinline poster="assets/bench/poster-07-gemini-4-carbon-medium-retry.jpg" width="1280" height="720" aria-label="Gemini 4 Carbon medium retry with a launcher hint, full run recording">
+            <source src="assets/bench/07-gemini-4-carbon-medium-retry-win2.mp4" type="video/mp4">
+            Your browser can't play this video.
+          </video>
+          <figcaption>Lost attempt 1, won attempt 2 for 1st place against Turn A and Nu Gundam. Video plus vision<sup>***</sup>. Recording length 13:31, 58 decision turns. This run included the launcher hint.</figcaption>
+        </figure>
+      </div>
 
       <h3 class="label">Results</h3>
       <div class="bmc" role="figure" aria-label="Gundam 2v2 benchmark charts">
@@ -336,6 +351,7 @@
                 <div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="59 decision turns" style="width:73.75%"></div></div><div class="bmc-rl"><b>59</b></div></div></div>
                 <div class="bmc-row"><div class="bmc-nm">GPT-6.2 Astra medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="13 decision turns" style="width:16.25%"></div></div><div class="bmc-rl"><b>13</b></div></div></div>
                 <div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="31 decision turns" style="width:38.75%"></div></div><div class="bmc-rl"><b>31</b></div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium retry with hint<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="58 decision turns" style="width:72.5%"></div></div><div class="bmc-rl"><b>58</b></div></div></div>
               </div>
             </div>
             <div class="bmc-ax"><div class="bmc-axt"><span style="left:0">0</span><span style="left:25%">20</span><span style="left:50%">40</span><span style="left:75%">60</span><span class="l" style="left:100%">80</span></div><div class="bmc-axs"></div></div>
@@ -354,6 +370,7 @@
                 <div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="14.6 minutes" style="width:91.2500%"></div></div><div class="bmc-rl"><b>14.6</b> min</div></div></div>
                 <div class="bmc-row"><div class="bmc-nm">GPT-6.2 Astra medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="6.6 minutes" style="width:41.2500%"></div></div><div class="bmc-rl"><b>6.6</b> min</div></div></div>
                 <div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="6.4 minutes" style="width:40.0000%"></div></div><div class="bmc-rl"><b>6.4</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium retry with hint<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="13.6 minutes" style="width:85.0000%"></div></div><div class="bmc-rl"><b>13.6</b> min</div></div></div>
               </div>
             </div>
             <div class="bmc-ax"><div class="bmc-axt"><span style="left:0">0</span><span style="left:25%">4</span><span style="left:50%">8</span><span style="left:75%">12</span><span class="l" style="left:100%">16</span></div><div class="bmc-axs"></div></div>
@@ -372,6 +389,7 @@
                 <div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium<sup>***</sup></div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Attempt 1 loss, attempt 2 loss"><span class="l">Loss</span><span class="l">Loss</span></div><div class="bmc-rl"><b>LOSS</b></div></div></div>
                 <div class="bmc-row"><div class="bmc-nm">GPT-6.2 Astra medium</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Attempt 1 win, attempt 2 not needed"><span class="w">Win</span><span class="n">Not needed</span></div><div class="bmc-rl"><b>WIN_1</b></div></div></div>
                 <div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Attempt 1 win, attempt 2 not needed"><span class="w">Win</span><span class="n">Not needed</span></div><div class="bmc-rl"><b>WIN_1</b></div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium retry with hint<sup>***</sup></div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Attempt 1 loss, attempt 2 win"><span class="l">Loss</span><span class="w">Win</span></div><div class="bmc-rl"><b>WIN_2</b></div></div></div>
               </div>
             </div>
           </div>
@@ -389,6 +407,7 @@
             <tr><th scope="row">Gemini 4 Carbon<sup>***</sup></th><td class="loss">LOSS</td><td>Loss (match point, 0 KOs)</td><td>Loss (vs Turn X and Turn A)</td><td>14.6 min</td><td>59</td><td>Pass</td></tr>
             <tr><th scope="row">GPT-6.2 Astra</th><td class="win">WIN_1</td><td>Win (1st, 78.5s left)</td><td>Not needed</td><td>6.6 min</td><td>13</td><td>Pass</td></tr>
             <tr><th scope="row">Claude Fable 5.2</th><td class="win">WIN_1</td><td>Win (1st, 92.7s left, 2 KOs, 1 fall, 19,610 PTS)</td><td>Not needed</td><td>6.4 min</td><td>31</td><td>Pass</td></tr>
+            <tr><th scope="row">Gemini 4 Carbon<sup>***</sup>, retry with hint</th><td class="win">WIN_2</td><td>Loss</td><td>Win (1st)</td><td>13.6 min</td><td>58</td><td>Pass</td></tr>
           </tbody>
         </table>
       </div>
@@ -403,6 +422,7 @@
             <tr><th scope="row">Gemini 4 Carbon<sup>***</sup></th><td>medium</td><td>Video and vision<sup>***</sup></td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
             <tr><th scope="row">GPT-6.2 Astra</th><td>medium</td><td>Vision</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
             <tr><th scope="row">Claude Fable 5.2</th><td>medium</td><td>Vision</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+            <tr><th scope="row">Gemini 4 Carbon<sup>***</sup>, retry with hint</th><td>medium</td><td>Video and vision<sup>***</sup></td><td>Yes, with a launcher hint</td><td>Yes</td><td>Yes</td></tr>
           </tbody>
         </table>
       </div>
@@ -415,10 +435,11 @@
         <div class="bm-note"><b>Gemini 4 Carbon medium<sup>***</sup></b><p>Attempt 1 used the rolling video clips on Heliopolis against Turn X and V2 Gundam. It took Turn X down and brought V2 to about 30 percent on match point before Turn X finished the team gauge. Attempt 2 opened with immediate boost dashes and backward kiting, but two 3000 cost melee units, Turn X and Turn A, trapped it near the edge of the arena.</p></div>
         <div class="bm-note"><b>GPT-6.2 Astra medium</b><p>Won on attempt 1. It opened with sideways strafing and beam rifle fire, closed into a red lock on Ez8 mixing saber and bazooka, broke away sideways at 11 armor, then respawned to team up with its partner on Duel AS and closed out the match with 78.5 seconds left.</p></div>
         <div class="bm-note"><b>Claude Fable 5.2 medium</b><p>Won on attempt 1, the fastest win by wall time. One relaunch happened during the publisher logos. It opened with close range rifle and melee pressure on Turn X and took one knockdown, then switched to ranged boost hop strafing with beam rifle and bazooka to finish with 2 KOs, 19,610 PTS and 92.7 seconds left.</p></div>
+        <div class="bm-note"><b>Gemini 4 Carbon medium, retry with hint<sup>***</sup></b><p>This retry was given a hint to press the Super key and search for Nimbus to open the TNRP 2.3.5 launcher. Attempt 1 was lost: an orange low armor warning glow paused its early movement routine, which cost two lives even though its partner brought Turn A close to defeat. For attempt 2 it removed that pause, closed into red lock range past cover and settled into paced left circle strafing with shorter boost hops that did not overheat, mixing beam rifle with the Gundam Hammer and sub weapon to take down Turn A and Nu Gundam for 1st place.</p></div>
       </div>
 
       <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon, which is also one of the tested models in Part 2. Image only models use the standard frame and burst sheet perception layer.</p>
-      <p class="note small">This is six models across two parts, so treat it as a first look and not a ranking, and more models may follow. Wall time and decision turns come from each run. Recording lengths are measured from the video files, and the Claude Opus 5.5, GPT-6.2 Astra and Claude Fable 5.2 recordings start partway through the launch phase.</p>
+      <p class="note small">This is six models and seven runs across two parts, so treat it as a first look and not a ranking, and more models may follow. The Gemini 4 Carbon retry included the launcher hint described above, so its win is counted in the run totals but is not a like for like result with the standard runs. Wall time and decision turns come from each run. Recording lengths are measured from the video files, and the Claude Opus 5.5, GPT-6.2 Astra and Claude Fable 5.2 recordings start partway through the launch phase.</p>
     </div>
   </div>
 </section>
