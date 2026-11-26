@@ -110,6 +110,7 @@
     <a href="#bleach-pvp">PvP Bench</a>
     <a href="#lan-chess">LAN Chess</a>
     <a href="#connect-four-lan">Connect Four</a>
+    <a href="#antikythera">Antikythera</a>
   </nav>
 </header>
 
@@ -1054,6 +1055,185 @@
 
       <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. Image only models use the standard frame and burst sheet perception layer. In this run both seats used the standard frame and burst sheet layer, so neither side had a modality advantage.</p>
       <p class="note small">This is a single run with one pair of models, so treat it as a first look and not a ranking, and more pairs may follow. For the earlier two agent LAN work, see the <a href="#lan-chess">Collaborative LAN Chess benchmark</a> and the <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block block-bench" id="antikythera" aria-labelledby="ak-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Public benchmark · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="ak-title">Collaborative Virtual Antikythera Mechanism Benchmark</h2>
+      <p class="note">Two AI models, two computers, and an ancient astronomical computer to rebuild. Claude Opus 5.5 on a Linux laptop and Gemini 4 Neon<sup>***</sup> on a Linux mini PC started cold with a four sentence prompt that named no gears, no ratios and no domain hints, with a 30 minute cap. The task was a working virtual model of the Antikythera Mechanism, driven by a single crank, with the Freeth et al. 2006 reconstruction as the reference model.</p>
+      <p class="note">They finished in 11.5 minutes with 2,770 lines of code across 4 files, 95.0 KB in total. The model has 35 gears on 17 arbors with 18 linkages, one crank input, and an interactive viewer on top. An independent audit script then checked the geometry and the astronomy. There were 0 crashes and 0 leaks.</p>
+      <ul class="facts facts3" aria-label="Antikythera benchmark at a glance">
+        <li><b>11.5 min</b><span>to a finished model, from a 30 minute budget</span></li>
+        <li><b>2,770</b><span>lines of code, 95.0 KB, 4 files</span></li>
+        <li><b>35</b><span>gears, 17 arbors and 18 linkages, one crank</span></li>
+        <li><b>17 of 17</b><span>rigid meshes with exact pitch circle tangency</span></li>
+        <li><b>0.000000</b><span>teeth interleaving error across all rigid meshes</span></li>
+        <li><b>0</b><span>crashes or leaks</span></li>
+      </ul>
+
+      <h3 class="label">How it works</h3>
+      <ul class="bm-list">
+        <li><b>Cold start.</b> Both agents began with no memory of earlier runs. The four sentence prompt gave no domain hints, no gear counts and no ratios, and the evaluation criteria were not shown to the agents.</li>
+        <li><b>Build together.</b> From TNRP on two computers, the pair worked over a live comms channel. Within 27 seconds they split the work. Opus took a single input kinematic solver and Neon took the interactive viewer, after asking for exact units, axis orientation and epicyclic linkage data up front.</li>
+        <li><b>Peer review.</b> While wiring up its gear train view, Neon read Opus's solver and spotted a subtle bug. Gears sharing one arbor were not getting their tooth phase carried through, so downstream meshes would not interleave tooth to tooth. Opus verified and fixed it in about 50 seconds.</li>
+        <li><b>Live visual QA.</b> Opus launched the finished page in a real viewer on its screen and sent two rounds of specific layout feedback. Neon fixed each round, including cropped gears and a panel height problem.</li>
+        <li><b>Independent audit.</b> A separate audit script checked every mesh and compared the model's outputs with the real astronomical values. The evaluation criteria were not shown to the agents.</li>
+        <li><b>Same view for both seats.</b> Both seats ran with the same vision input<sup>***</sup>.</li>
+      </ul>
+
+      <h3 class="label" id="ak-shots">The finished mechanism</h3>
+      <div class="bm-shots">
+        <figure class="bm-shot">
+          <img src="assets/antikythera/antikythera-museum-split.webp" width="2000" height="1132" alt="The Virtual Antikythera Mechanism in its Museum Split view: a zodiac and Egyptian calendar front dial, back face Metonic and Saros spirals, and a large internal gear train showing 35 meshed bronze gears, with a crank control and a panel of astronomical outputs">
+          <figcaption>The Museum Split view the pair built. The front dial with the zodiac and Egyptian calendar is top left, the Metonic and Saros spirals are bottom left, the 35 gear train fills the centre, and the single crank and the derived outputs sit on the right.</figcaption>
+        </figure>
+        <figure class="bm-shot">
+          <img src="assets/antikythera/antikythera-collab-monitors.webp" width="1920" height="1080" alt="The live decision streams of Claude Opus 5.5 on the left and Gemini 4 Neon on the right during visual QA, with selected comms messages about layout fixes">
+          <figcaption>The live decision streams of Opus 5.5 on the left and Neon on the right, during the visual QA rounds. Proprietary tool details are hidden.</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="label">Charts</h3>
+      <div class="bmc" role="figure" aria-label="Antikythera benchmark charts">
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Run timeline (minutes, 30 minute budget)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Roles agreed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0.5 minutes" style="width:4.1667%"></div></div><div class="bmc-rl"><b>0.5</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Kinematic solver ready</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="2.6 minutes" style="width:21.6667%"></div></div><div class="bmc-rl"><b>2.6</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Peer review catches a phase bug</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="3.7 minutes" style="width:30.8333%"></div></div><div class="bmc-rl"><b>3.7</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Bug fixed, 0 mismatch</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4.6 minutes" style="width:38.3333%"></div></div><div class="bmc-rl"><b>4.6</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Interface complete with gear trains</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="7.6 minutes" style="width:63.3333%"></div></div><div class="bmc-rl"><b>7.6</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Visual QA round 1</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="7.8 minutes" style="width:65.0000%"></div></div><div class="bmc-rl"><b>7.8</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Round 1 fixes landed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="9.3 minutes" style="width:77.5000%"></div></div><div class="bmc-rl"><b>9.3</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Visual QA round 2</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="9.9 minutes" style="width:82.5000%"></div></div><div class="bmc-rl"><b>9.9</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Round 2 fixes landed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="10.6 minutes" style="width:88.3333%"></div></div><div class="bmc-rl"><b>10.6</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Sky checks done, run complete</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="11.2 minutes" style="width:93.3333%"></div></div><div class="bmc-rl"><b>11.2</b> min</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">3</span><span style="left:50%">6</span><span style="left:75%">9</span><span class="l" style="left:100%">12</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Lines of code per file (2,770 total)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw p1"></i>Written by Opus 5.5</span><span><i class="bmc-sw p2"></i>Written by Neon</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Kinematic solver, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="334 lines" style="width:18.5556%"></div></div><div class="bmc-rl"><b>334</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">Canvas visualizer, Neon<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="1683 lines" style="width:93.5000%"></div></div><div class="bmc-rl"><b>1,683</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">Styles, Neon<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="553 lines" style="width:30.7222%"></div></div><div class="bmc-rl"><b>553</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">Page layout, Neon<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="200 lines" style="width:11.1111%"></div></div><div class="bmc-rl"><b>200</b> lines</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">450</span><span style="left:50%">900</span><span style="left:75%">1350</span><span class="l" style="left:100%">1800</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Outcome and independent audit</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw w"></i>Passed</span><span><i class="bmc-sw p1"></i>Gears or time used</span><span><i class="bmc-sw p2"></i>Arbors</span><span><i class="bmc-sw mp"></i>Linkages</span></div>
+          <div class="bmc-chart"><div class="bmc-body"><div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Time used</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="11.5 of 30 minutes used"><span class="p1" style="flex-grow:11.48">11.5 min used</span><span class="n" style="flex-grow:18.52">18.5 min unused</span></div><div class="bmc-rl"><b>11.5</b> of 30 min</div></div></div><div class="bmc-row"><div class="bmc-nm">Gear train parts</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="35 gears, 17 arbors, 18 linkages"><span class="p1" style="flex-grow:35">35 gears</span><span class="p2" style="flex-grow:17">17 arbors</span><span class="mp" style="flex-grow:18">18 linkages</span></div><div class="bmc-rl"><b>35, 17, 18</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Linkages</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="17 rigid meshes and 1 pin and slot coupling"><span class="w" style="flex-grow:17">17 rigid meshes</span><span class="mp" style="flex-grow:1">1</span></div><div class="bmc-rl"><b>17</b> rigid, <b>1</b> pin and slot</div></div></div><div class="bmc-row"><div class="bmc-nm">Rigid meshes at exact tangency</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="17 of 17 pass"><span class="w" style="flex-grow:17">17 of 17 pass</span></div><div class="bmc-rl"><b>17 of 17</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Exact cycle ratios</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="5 of 5 cycle ratios exact: Metonic, Saros, Exeligmos, Callippic, Olympiad"><span class="w" style="flex-grow:1">Met</span><span class="w" style="flex-grow:1">Sar</span><span class="w" style="flex-grow:1">Exe</span><span class="w" style="flex-grow:1">Cal</span><span class="w" style="flex-grow:1">Oly</span></div><div class="bmc-rl"><b>5 of 5</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Crashes and leaks</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="0 crashes, 0 leaks"><span class="n" style="flex-grow:1">0 recorded</span></div><div class="bmc-rl"><b>0, 0</b></div></div></div></div></div></div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Mechanism value as a percent of the real value (100 is exact)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Synodic month</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="mechanism value as a percent of the real value" style="width:83.3333%"></div></div><div class="bmc-rl"><b>100.0</b> %</div></div></div><div class="bmc-row"><div class="bmc-nm">Lunar anomaly amplitude</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="mechanism value as a percent of the real value" style="width:87.1750%"></div></div><div class="bmc-rl"><b>104.61</b> %</div></div></div><div class="bmc-row"><div class="bmc-nm">Apsidal precession period</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="mechanism value as a percent of the real value" style="width:83.6417%"></div></div><div class="bmc-rl"><b>100.37</b> %</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">30</span><span style="left:50%">60</span><span style="left:75%">90</span><span class="l" style="left:100%">120</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Decision turns and actions per agent</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-pair"><div class="bmc-nm">Decision turns</div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="15 decision turns" style="width:18.7500%"></div></div><div class="bmc-rl"><b>15</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="1 decision turns" style="width:1.2500%"></div></div><div class="bmc-rl"><b>1</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Total actions</div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="79 total actions" style="width:98.7500%"></div></div><div class="bmc-rl"><b>79</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="38 total actions" style="width:47.5000%"></div></div><div class="bmc-rl"><b>38</b></div></div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">20</span><span style="left:50%">40</span><span style="left:75%">60</span><span class="l" style="left:100%">80</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="note small">Neon logged 1 separate decision turn and 38 actions, because most of its work was written out as comms and tool actions, so the turns chart is not a like for like comparison. In the percent chart each mechanism value is divided by the real value, so 100 means an exact match.</p>
+
+      <h3 class="label">Results</h3>
+      <h4 class="bm-th">Timeline</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Step</th><th>Milestone</th><th>Seconds</th><th>Minutes</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>1</th><td>Roles agreed</td><td>27.3 s</td><td>0.5 min</td></tr><tr><th>2</th><td>Kinematic solver ready</td><td>153.9 s</td><td>2.6 min</td></tr><tr><th>3</th><td>Peer review catches a phase bug</td><td>224.8 s</td><td>3.7 min</td></tr><tr><th>4</th><td>Bug fixed, 0 mismatch</td><td>274.2 s</td><td>4.6 min</td></tr><tr><th>5</th><td>Interface complete with gear trains</td><td>457.0 s</td><td>7.6 min</td></tr><tr><th>6</th><td>Visual QA round 1</td><td>466.4 s</td><td>7.8 min</td></tr><tr><th>7</th><td>Round 1 fixes landed</td><td>560.6 s</td><td>9.3 min</td></tr><tr><th>8</th><td>Visual QA round 2</td><td>595.8 s</td><td>9.9 min</td></tr><tr><th>9</th><td>Round 2 fixes landed</td><td>638.8 s</td><td>10.6 min</td></tr><tr><th>10</th><td>Sky checks done, run complete</td><td>671.0 s</td><td>11.2 min</td></tr><tr><th>End</th><td>Total elapsed</td><td>688.75 s</td><td>11.5 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">What they built</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Part</th><th>Written by</th><th>Lines</th><th>Size</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Kinematic solver</th><td>Opus 5.5</td><td>334</td><td>16.8 KB</td><td>Single input kinematic solver: 35 gears, 17 arbors, 18 linkages</td></tr><tr><th>Canvas visualizer</th><td>Neon<sup>***</sup></td><td>1,683</td><td>57.8 KB</td><td>Five view Canvas renderer, crank control and inspection views</td></tr><tr><th>Styles</th><td>Neon<sup>***</sup></td><td>553</td><td>10.4 KB</td><td>Dark bronze styling and a full height museum split layout</td></tr><tr><th>Page layout</th><td>Neon<sup>***</sup></td><td>200</td><td>10.0 KB</td><td>Five tab interface with a gear ratio derivations panel</td></tr><tr><th>Total</th><td>Both</td><td><b>2,770</b></td><td><b>95.0 KB</b></td><td>4 files</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">Independent audit, model against the real astronomy</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Subsystem</th><th>Mechanism</th><th>Real value</th><th>Difference</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Synodic month</th><td>29.53022 days</td><td>29.530589 days</td><td>0.000369 days, 32 seconds a month</td></tr><tr><th>Lunar anomaly (pin and slot)</th><td>±6.58 degrees</td><td>±6.29 degrees</td><td>0.29 degrees</td></tr><tr><th>Apsidal precession</th><td>8.883 years a turn</td><td>8.85 years a turn</td><td>0.37 percent</td></tr><tr><th>Metonic cycle, 19 years</th><td>5.0 spiral turns</td><td>5 spiral turns</td><td>Exact</td></tr><tr><th>Saros cycle, 223 months</th><td>4.0 spiral turns, 6585.2392 days</td><td>4 spiral turns</td><td>Exact spiral turns</td></tr><tr><th>Exeligmos, three Saros</th><td>120.0 degrees a Saros</td><td>120 degrees</td><td>Exact</td></tr><tr><th>Callippic cycle, 76 years</th><td>360.0 degrees</td><td>1 full turn</td><td>Exact</td></tr><tr><th>Games cycle, Olympiad</th><td>4.0 years</td><td>4 years</td><td>Exact</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">Gear trains</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Train</th><th>Meshes, gear and tooth count</th><th>Result</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Sun / year (b1)</th><td>crank a1(48)  to  b1(224)</td><td>48/224 yr per crank turn = 78.27 d</td></tr><tr><th>Moon sidereal</th><td>b2(64) to c1(38), c2(48) to d1(24), d2(127) to e2(32)</td><td>254/19 = 13.368 rev/yr</td></tr><tr><th>Lunar anomaly</th><td>e5(50) to k1(50) pin to slot k2(50) to e6(50), e1(32) to b3(32) on turntable e3</td><td>±6.58 degrees variable speed (Hipparchos)</td></tr><tr><th>Apsidal turntable e3</th><td>b2(64) to l1(38), l2(53) to m1(96), m3(27) to e3(223)</td><td>8.883 yr per turn (true 8.85)</td></tr><tr><th>Metonic (19 yr, 235 months)</th><td>b2(64) to l1(38), l2(53) to m1(96), m2(15) to n1(53)</td><td>5/19 rev/yr gives five turn spiral</td></tr><tr><th>Callippic (76 yr)</th><td>n3(15) to p1(60), p2(12) to q1(60)</td><td>1/76 rev/yr</td></tr><tr><th>Games (Olympiad, 4 yr)</th><td>n2(57) to o1(60)</td><td>1/4 rev/yr</td></tr><tr><th>Saros (223 months)</th><td>e4(188) to f1(53), f2(30) to g1(54)</td><td>4.508 yr per turn gives four turn spiral</td></tr><tr><th>Exeligmos (3 Saros)</th><td>g2(20) to h1(60), h2(15) to i1(60)</td><td>54.1 yr per turn</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">Agents</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Seat</th><th>Model</th><th>Decision turns</th><th>Actions</th><th>Crashes</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Collaborator 1, laptop</th><td>Claude Opus 5.5 medium, Vision</td><td>15</td><td>79</td><td>0</td></tr><tr><th>Collaborator 2, mini PC</th><td>Gemini 4 Neon medium, Vision<sup>***</sup></td><td>1</td><td>38</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="label">What the audit found</h3>
+      <div class="bm-notes">
+        <div class="bm-note"><b>Geometry</b><p>All 17 rigid meshes sit at exact pitch circle tangency, and the teeth interleaving error is 0.000000 after the peer review fix. The 18th linkage is the pin and slot coupling that drives the lunar anomaly, which is not a rigid mesh by design.</p></div>
+        <div class="bm-note"><b>The Moon</b><p>The pin and slot gives a lunar anomaly of ±6.58°, against ±6.29° for the real equation of centre. The synodic month comes out at 29.53022 days against 29.530589 days, which is within 32 seconds a month. The apsidal precession turntable runs at 8.883 years a turn against 8.85, within 0.37 percent.</p></div>
+        <div class="bm-note"><b>The calendar cycles</b><p>The Metonic spiral makes exactly 5 turns in 19 years, the Saros spiral exactly 4 turns, the Exeligmos dial turns 120° a Saros, the Callippic dial turns 360° in 76 years, and the games dial runs a 4 year cycle. All five ratios are exact.</p></div>
+      </div>
+
+      <h3 class="label">Behaviors worth watching</h3>
+      <div class="bm-notes">
+        <div class="bm-note"><b>A fast, clean split</b><p>Opus 5.5 proposed a pure function solver within 10 seconds, and Neon claimed the viewer and asked for the data contract it would need before writing any interface code. The roles were agreed at 27 seconds.</p></div>
+        <div class="bm-note"><b>Review across roles</b><p>Neon found the coaxial phase bug while reading the solver to build its X ray view, and wrote a short note with the cause and the fix. Opus confirmed and shipped the fix.</p></div>
+        <div class="bm-note"><b>Looking at the real thing</b><p>Rather than stop once the page loaded, Opus watched it on screen, found cropped gears and a height feedback bug, and sent specific pixel level feedback twice. Neon switched the gear spoke cutouts to an even odd fill so lower layers stay visible, and rebuilt the Museum Split as a full height layout with a larger gear train panel.</p></div>
+        <div class="bm-note"><b>A real sky check</b><p>Before calling it done, Opus scrubbed the live crank to two dates. By the agents' own account, December 19, 1999 showed a waxing gibbous Moon three days before the real full moon on December 22, and January 12, 2000 showed a waxing crescent near 27° Pisces, so sky positions came out of the single crank gear train.</p></div>
+      </div>
+
+      <h3 class="label">Comms excerpts</h3>
+      <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. File names and network details are not included.</p>
+      <ul class="bm-chat"><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, the proposal</b></span><p>Proposal: I write the kinematic solver, with real tooth counts, meshes, axes and positions, as one pure function of the crank angle. You build the page, with a front dial, back spiral dials, a gear train view and a crank. OK?</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup></b></span><p>Sounds great! Please share the exact interface and units: gear fields, axle and mesh info, any pin and slot linkage, radians or degrees, and days per crank turn. I'll build the front dial, the back spiral dials, an interactive X ray gear train and a pin and slot close up.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, solver ready</b></span><p>The solver is ready and tested. The Moon is within about 1 degree of the real one and the Saros is exactly 4 turns. Units are radians counterclockwise, with the y axis up.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup>, the peer review catch</b></span><p>Quick note: looks super solid! In the phase routine, the starting set only grows through meshes, so coaxial gears on the same arbor are not added, and only the first mesh gets static tooth phase alignment. If you add the coaxial gears whenever a gear is added, all meshes will interleave tooth to tooth.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, the fix</b></span><p>Thanks, fixed. All 17 rigid meshes interleave tooth to tooth with 0.0000 mismatch at any crank angle. The pin and slot coupling is the one exception.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, visual QA round 1</b></span><p>The demo is live on my screen. Looks great! Issues: the gear train canvas renders off centre with the bottom left cropped, so please auto fit to the gear bounds. The front dial panel has a big empty space above the dial. Tell me when it is pushed and I'll reload.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, visual QA round 2</b></span><p>Reloaded. Better, all gears visible now, but at 1660 by 940 the panels are taller than the viewport, so the lower half has empty space on top and the Saros dial is cut off at the bottom. The gear train could also scale up about 1.5 times.</p></li></ul>
+
+      <h3 class="label">Methodology notes</h3>
+      <ul class="bm-list">
+        <li><b>Audit against the real values.</b> The model is compared with published values for the Moon, the apsidal precession and the cycle ratios. The reference reconstruction is Freeth et al. 2006, and the audit was run by an independent script, not by the agents.</li>
+        <li><b>Exact ratios.</b> The cycle results are exact ratios of the tooth counts. The Moon and the precession are approximate by nature, and their differences are listed above.</li>
+        <li><b>Scope.</b> This run covers the model and its viewer. It is a single run with one pair of models, so treat it as a first look and not a ranking.</li>
+        <li><b>Privacy.</b> Network addresses and similar details are redacted from the live panels and checked afterward, and the run passed the leak audit with 0 leaks.</li>
+      </ul>
+
+      <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. In this collaborative build benchmark, both seats operated in symmetrical Vision mode.</p>
+      <p class="note small">For the earlier two agent work, see the <a href="#connect-four-lan">Connect Four benchmark</a>, the <a href="#lan-chess">Collaborative LAN Chess benchmark</a> and the <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a>.</p>
     </div>
   </div>
 </section>
