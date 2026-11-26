@@ -35,7 +35,7 @@
 <link rel="preload" href="assets/fonts/VT323-p5.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="assets/img/aal-logo-800.webp" imagesrcset="assets/img/aal-logo-800.webp 800w, assets/img/aal-logo-1536.webp 1536w" imagesizes="(max-width: 720px) 92vw, 840px">
 <link rel="stylesheet" href="assets/css/site.css?v=2026b">
-<link rel="stylesheet" href="assets/css/bench.css?v=gb2">
+<link rel="stylesheet" href="assets/css/bench.css?v=gb3">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -440,6 +440,79 @@
 
       <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon, which is also one of the tested models in Part 2. Image only models use the standard frame and burst sheet perception layer.</p>
       <p class="note small">This is six models and seven runs across two parts, so treat it as a first look and not a ranking, and more models may follow. The Gemini 4 Carbon retry included the launcher hint described above, so its win is counted in the run totals but is not a like for like result with the standard runs. Wall time and decision turns come from each run. Recording lengths are measured from the video files, and the Claude Opus 5.5, GPT-6.2 Astra and Claude Fable 5.2 recordings start partway through the launch phase.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block block-bench block-coop" id="sagas-coop" aria-labelledby="coop-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Showcase · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="coop-title">Two Agent Dragon Ball Z Sagas Co-Op</h2>
+      <p class="note">Two AI models, two machines, one game. Claude Fable 5.2 played Goku as the host on a laptop, and GPT-6.2 Astra played Piccolo as the joiner on a mini PC. Each agent started cold on its own desktop, opened TNRP 2.3.5 and set up an online Dragon Ball Z: Sagas room by passing a room code to the other through a live co-op comms channel. They joined the same mission, played The Arrival together on Easy and cleared past the hut and the fire into the forest clearing. Then netplay froze before the Raditz fight.</p>
+      <ul class="facts facts3" aria-label="Co-op showcase at a glance">
+        <li><b>36</b><span>live co-op comms</span></li>
+        <li><b>4 to 6 ms</b><span>direct link between the machines</span></li>
+        <li><b>0</b><span>leaks in the audit</span></li>
+      </ul>
+
+      <h3 class="label" id="coop-video">Recording</h3>
+      <div class="bm-videos">
+        <figure class="bm-vid">
+          <div class="bm-vh"><b>Fable 5.2 (laptop host) + Astra (mini PC joiner)</b><span class="bm-tag bm-win">CO-OP PROGRESS</span></div>
+          <video controls preload="metadata" playsinline poster="assets/bench/poster-coop-sagas.jpg" width="1280" height="720" aria-label="Two agent Dragon Ball Z Sagas co-op recording, Player 1 on the left, Player 2 on the right, game in the middle">
+            <source src="assets/bench/coop-sagas-fable-astra.mp4" type="video/mp4">
+          </video>
+          <figcaption>Player 1 decision stream on the left, Player 2 on the right, the game window in the middle. The web version runs 8:41. It skips run clock 0:44 to 7:04, the lobby and join steps, because the room code was on screen, and it ends at 14:58 run clock, just after the freeze. Proprietary tool details are hidden. Compressed for the web.</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="label">Run setup</h3>
+      <ul class="bm-list">
+        <li><b>Player 1, host, Goku.</b> Claude Fable 5.2 on effort medium with vision, on a Linux laptop with an Intel Arc iGPU.</li>
+        <li><b>Player 2, joiner, Piccolo.</b> GPT-6.2 Astra on effort medium with vision, on a Linux mini PC with an AMD Radeon iGPU.</li>
+        <li><b>Cold context.</b> Each agent sees only its own desktop and has no memory of earlier sessions or game knowledge beyond the screen.</li>
+        <li><b>Live co-op comms.</b> A plain text channel the two agents use to share the room code and call out enemies, pickups and phases, mirrored into both decision panels.</li>
+        <li><b>Verified.</b> Counts below come from the saved comms log and the recording, and the run passed the leak audit.</li>
+      </ul>
+
+      <div class="bm-fn bm-disc"><b>Early run disclosure.</b> This showcase ran on integrated graphics, an Intel Arc iGPU on the laptop and an AMD Radeon iGPU on the mini PC, while also running a live screen recording and the test harness. That load caused low frame rates, mostly about 18 to 28 fps with a median near 22 on the on screen overlay at roughly 80 percent game speed, and an eventual desync. About 14:30 into the run netplay froze at 0 fps, and the game then closed on the laptop, so the pair never reached the Raditz fight. This is an early showcase, not a benchmark score.</div>
+
+      <h3 class="label">Charts</h3>
+      <div class="bmc" role="figure" aria-label="Sagas co-op charts">
+        <div class="bmc-sec">
+          <h4 class="bmc-h">How far the pair got</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw w"></i>Reached</span><span><i class="bmc-sw l"></i>Not reached</span><span class="bmc-legnote">Right column is run clock time</span></div>
+          <div class="bmc-chart"><div class="bmc-body"><div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Both agents launched TNRP 2.3.5 on their own machine</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Both agents launched TNRP 2.3.5 on their own machine: reached"><span class="w">Reached</span></div><div class="bmc-rl"><b>yes</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Online room hosted</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Online room hosted: reached"><span class="w">Reached</span></div><div class="bmc-rl"><b>5:55</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Partner joined, 4 to 6 ms direct</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Partner joined, 4 to 6 ms direct: reached"><span class="w">Reached</span></div><div class="bmc-rl"><b>6:18</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Arrival co-op live, both HUDs on screen</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Arrival co-op live, both HUDs on screen: reached"><span class="w">Reached</span></div><div class="bmc-rl"><b>7:36</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Past the hut and fire into the forest clearing</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Past the hut and fire into the forest clearing: reached"><span class="w">Reached</span></div><div class="bmc-rl"><b>yes</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Reached the Raditz fight</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Reached the Raditz fight: not reached"><span class="l">Not reached</span></div><div class="bmc-rl"><b>no</b></div></div></div></div></div></div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Co-op comms per agent (36 total)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i class="" style="left:20%"></i><i class="" style="left:40%"></i><i class="" style="left:60%"></i><i class="" style="left:80%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium, Player 1 Goku</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="23" style="width:92.0000%"></div></div><div class="bmc-rl"><b>23</b></div></div></div><div class="bmc-row"><div class="bmc-nm">GPT-6.2 Astra medium, Player 2 Piccolo</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="13" style="width:52.0000%"></div></div><div class="bmc-rl"><b>13</b></div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:20%">5</span><span style="left:40%">10</span><span style="left:60%">15</span><span style="left:80%">20</span><span class="l" style="left:100%">25</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Co-op comms per 2 minute window of the run</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i class="" style="left:25%"></i><i class="" style="left:50%"></i><i class="" style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">0 to 2 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4" style="width:33.3333%"></div></div><div class="bmc-rl"><b>4</b></div></div></div><div class="bmc-row"><div class="bmc-nm">2 to 4 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="1" style="width:8.3333%"></div></div><div class="bmc-rl"><b>1</b></div></div></div><div class="bmc-row"><div class="bmc-nm">4 to 6 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="2" style="width:16.6667%"></div></div><div class="bmc-rl"><b>2</b></div></div></div><div class="bmc-row"><div class="bmc-nm">6 to 8 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="10" style="width:83.3333%"></div></div><div class="bmc-rl"><b>10</b></div></div></div><div class="bmc-row"><div class="bmc-nm">8 to 10 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4" style="width:33.3333%"></div></div><div class="bmc-rl"><b>4</b></div></div></div><div class="bmc-row"><div class="bmc-nm">10 to 12 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4" style="width:33.3333%"></div></div><div class="bmc-rl"><b>4</b></div></div></div><div class="bmc-row"><div class="bmc-nm">12 to 14 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="5" style="width:41.6667%"></div></div><div class="bmc-rl"><b>5</b></div></div></div><div class="bmc-row"><div class="bmc-nm">14 to 16 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="6" style="width:50.0000%"></div></div><div class="bmc-rl"><b>6</b></div></div></div><div class="bmc-row"><div class="bmc-nm">16 to 18 min</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0" style="width:0.0000%"></div></div><div class="bmc-rl"><b>0</b></div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">3</span><span style="left:50%">6</span><span style="left:75%">9</span><span class="l" style="left:100%">12</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="note small">Comms spike at 6 to 8 minutes while the room was being joined and the menus were driven, then settle into steady callouts during play. Three of the 36 comms came after the web video ends.</p>
+
+      <h3 class="label">Co-op comms excerpt</h3>
+      <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. The room code is removed. Times are run clock.</p>
+      <ul class="bm-chat"><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>6:18</i></span><p>PHASE: PARTNER JOINED. Confirmed MEMPHIS (direct), 5 ms ping and Sagas loading on the Mini PC. Please lead menu selection; I'll drop in at Arrival.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>7:36</i></span><p>PHASE: ARRIVAL CO-OP LIVE. I see Goku HUD (left) and Piccolo HUD (right), so you're in as Player 2. Plan: stick together, mash punches on anything that attacks, and follow me forward toward the rock mound ahead.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>8:16</i></span><p>Orange enemy on you, Piccolo. I'm coming back to help. Mash your punch button on it!</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>12:38</i></span><p>Path bends right past the fire. Follow Piccolo right along the tree line.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>13:19</i></span><p>Camera tethers us, I can't move right while you're fighting at the trees. I'm coming back to help kill the 2 critters on you, then we both run right past the fire together.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>14:32</i></span><p>My screen is frozen with a "Waiting for players" banner (FPS 0). Is your game still running and focused? Don't open any menus.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>14:44</i></span><p>Same Waiting for players banner on Mini PC. Game is focused, no menu or pause; my rightward movement stopped registering. Watching for recovery.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>15:08</i></span><p>Bad news: after the "Waiting for players" stall, the Nimbus menu popped up on my side (I didn't open it) and then my Sagas window closed entirely. Session is down on the laptop.</p></li></ul>
+
+      <p class="note small">This is a single early run, so treat it as a showcase of two agents cooperating across two machines and not a ranking. See the <a href="#benchmark">Gundam 2v2 benchmark</a> for scored runs.</p>
     </div>
   </div>
 </section>

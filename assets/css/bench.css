@@ -80,3 +80,14 @@ sup{line-height:0}
 .bm-yt{margin:14px 0 6px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
 .bm-yt .note{margin:0}
 .bm-yt+.bm-th{margin-top:18px}
+
+/* sagas co-op showcase */
+.bm-chat{margin:8px 0 6px;padding:0;list-style:none;display:grid;gap:10px}
+.bm-msg{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
+.bm-msg.p1{border-left:4px solid var(--aal-orange)}
+.bm-msg.p2{border-left:4px solid var(--aal-purple)}
+.bm-mt{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:#a8bcd8}
+.bm-mt b{color:#ffe9a8;font-weight:700}
+.bm-mt i{font-style:normal;color:#8fa9c8;font-variant-numeric:tabular-nums}
+.bm-msg p{margin:4px 0 0;font-size:15px;color:#cfdcf3}
+.bm-disc{margin-top:26px}
