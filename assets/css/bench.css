@@ -118,3 +118,6 @@ sup{line-height:0}
 .block-disappoint h3.label{margin-top:18px}
 .block-disappoint h4.label{margin-top:18px}
 .block-disappoint h3.label+h4.label{margin-top:14px}
+
+.bmc-sw.ob,.bmc-stk .ob{background:#1c2430;color:#f3eee3}
+.bmc-sw.ow,.bmc-stk .ow{background:#e8dfc8;color:#06102e}

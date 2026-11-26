@@ -111,6 +111,8 @@
     <a href="#lan-chess">LAN Chess</a>
     <a href="#connect-four-lan">Connect Four</a>
     <a href="#antikythera">Antikythera</a>
+    <a href="#wargames-collab">WarGames</a>
+    <a href="#othello-lan">Othello</a>
     <a href="#ai-disappointments">Disappointments</a>
   </nav>
 </header>
@@ -493,7 +495,7 @@
           </div>
         </div>
         <div class="bmc-sec">
-          <h4 class="bmc-h">Co-op comms per run (277 total)</h4>
+          <h4 class="bmc-h">Comms messages per run (277 total)</h4>
           <div class="bmc-chart">
             <div class="bmc-body">
               <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
@@ -1235,6 +1237,406 @@
 
       <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. In this collaborative build benchmark, both seats operated in symmetrical Vision mode.</p>
       <p class="note small">For the earlier two agent work, see the <a href="#connect-four-lan">Connect Four benchmark</a>, the <a href="#lan-chess">Collaborative LAN Chess benchmark</a> and the <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block block-bench" id="wargames-collab" aria-labelledby="wg-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Public benchmark · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="wg-title">Collaborative WarGames Simulation Benchmark (AEGIS-7)</h2>
+      <p class="note">Two AI models, two computers, and a WarGames simulation to build from a cold start. Claude Opus 5.5 on a laptop and Gemini 4 Neon<sup>***</sup> on a mini PC were given a 30 minute budget and permission to spawn subagents. They spawned 0 subagents and worked as direct peers instead.</p>
+      <p class="note">They finished in 7.9 minutes (476.14 s) with 1,862 lines of code across 9 files, 76.6 KB in total, and no external dependencies. The project is titled AEGIS-7, Strategic Simulation Terminal. It covers 22 cities (11 US and 11 USSR), 40 warheads per side, DEFCON levels 1 to 5, and a LEARN montage of 8 tic tac toe games plus 24 strategic scenarios. They also applied unprompted copyright self policing, keeping the writing and marks original. There were 0 crashes and 0 leaks.</p>
+      <ul class="facts facts3" aria-label="WarGames benchmark at a glance">
+        <li><b>7.9 min</b><span>to a finished build, from a 30 minute budget</span></li>
+        <li><b>1,862</b><span>lines of code, 76.6 KB, 9 files</span></li>
+        <li><b>0</b><span>subagents spawned, by either seat</span></li>
+        <li><b>22</b><span>cities, 11 per side, and 40 warheads per side</span></li>
+        <li><b>24</b><span>strategic scenarios in the LEARN montage</span></li>
+        <li><b>0</b><span>crashes or leaks</span></li>
+      </ul>
+
+      <h3 class="label">How it works</h3>
+      <ul class="bm-list">
+        <li><b>Cold start.</b> Both agents began with no memory of earlier runs, a 30 minute cap, and permission to spawn subagents to divide the work.</li>
+        <li><b>Direct peer work.</b> Neither seat spawned a subagent. Opus 5.5 took the page, styles, simulation engine, terminal, tic tac toe module, a fallback shim, and a launcher. Neon took the map view and the audio.</li>
+        <li><b>Unprompted copyright self policing.</b> With no request to avoid film quotes or logos, the pair kept the text and marks original and used the AEGIS-7 name.</li>
+        <li><b>The finished simulation.</b> AEGIS-7 presents a terminal plus a global theater. The LEARN montage runs 8 tic tac toe games and 24 strategic scenarios.</li>
+        <li><b>Same view for both seats.</b> Both seats ran with the same vision input<sup>***</sup>.</li>
+        <li><b>Verified.</b> Counts come from the structured run log. The run passed the leak audit with 0 crashes and 0 leaks recorded.</li>
+      </ul>
+
+      <h3 class="label" id="wg-shots">The finished simulation</h3>
+      <div class="bm-shots">
+        <figure class="bm-shot">
+          <img src="assets/wargames/wargames-aegis7-missiles.webp" width="1850" height="1048" alt="The AEGIS-7 Strategic Simulation during LEARN self play: a phosphor terminal lists eight tic tac toe draws and early scenarios ending in winner none, while a world map shows ballistic arcs and a readout of 11 missiles in flight">
+          <figcaption>AEGIS-7 during the LEARN montage. The terminal is scrolling tic tac toe draws and scenarios, and the map shows live arcs with 11 missiles in flight.</figcaption>
+        </figure>
+        <figure class="bm-shot">
+          <img src="assets/wargames/wargames-aegis7-analysis-complete.webp" width="1850" height="1048" alt="The AEGIS-7 Strategic Simulation after all 24 LEARN scenarios, each ending in winner none, with an original conclusion on the terminal that every line of play ends in mutual loss and the only sound strategy is to decline the game">
+          <figcaption>The end of the 24 scenario LEARN montage. Every scenario ends in winner none, followed by an original conclusion on the terminal.</figcaption>
+        </figure>
+        <figure class="bm-shot">
+          <img src="assets/wargames/wargames-collab-monitors.webp" width="1850" height="1048" alt="The live decision streams of Claude Opus 5.5 on the left and Gemini 4 Neon on the right during the AEGIS-7 build, with selected comms about original text and the map and audio work">
+          <figcaption>The live decision streams of Opus 5.5 on the left and Neon on the right. Paths in the visible comms were already replaced, and proprietary tool details are hidden.</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="label">Charts</h3>
+      <div class="bmc" role="figure" aria-label="WarGames benchmark charts">
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Time used (minutes, 30 minute budget)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5, laptop</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="7.8 minutes" style="width:25.9933%"></div></div><div class="bmc-rl"><b>7.8</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon, mini PC<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="7.9 minutes" style="width:26.3239%"></div></div><div class="bmc-rl"><b>7.9</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Total elapsed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="7.9 minutes" style="width:26.4522%"></div></div><div class="bmc-rl"><b>7.9</b> min</div></div></div>
+              </div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">7.5</span><span style="left:50%">15</span><span style="left:75%">22.5</span><span class="l" style="left:100%">30</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Lines of code per file (1,862 total)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw p1"></i>Written by Opus 5.5</span><span><i class="bmc-sw p2"></i>Written by Neon</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">map.js, Neon<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="1,182 lines" style="width:98.5000%"></div></div><div class="bmc-rl"><b>1,182</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">audio.js, Neon<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="208 lines" style="width:17.3333%"></div></div><div class="bmc-rl"><b>208</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">terminal.js, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="204 lines" style="width:17.0000%"></div></div><div class="bmc-rl"><b>204</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">sim.js, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="123 lines" style="width:10.2500%"></div></div><div class="bmc-rl"><b>123</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">fallback.js, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="56 lines" style="width:4.6667%"></div></div><div class="bmc-rl"><b>56</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">index.html, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="38 lines" style="width:3.1667%"></div></div><div class="bmc-rl"><b>38</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">tictactoe.js, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="19 lines" style="width:1.5833%"></div></div><div class="bmc-rl"><b>19</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">style.css, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="18 lines" style="width:1.5000%"></div></div><div class="bmc-rl"><b>18</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">launch.py, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="14 lines" style="width:1.1667%"></div></div><div class="bmc-rl"><b>14</b> lines</div></div></div>
+              </div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">300</span><span style="left:50%">600</span><span style="left:75%">900</span><span class="l" style="left:100%">1,200</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Outcome</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">Subagents spawned</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Zero subagents spawned by either seat"><span class="w">None</span></div><div class="bmc-rl"><b>0</b> and <b>0</b></div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Time used</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="7.9 of 30 minutes used"><span class="p1" style="flex-grow:7.9">7.9 min used</span><span class="n" style="flex-grow:22.1">22.1 min unused</span></div><div class="bmc-rl"><b>7.9</b> of 30 min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Code</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="1,862 lines across 9 files with no external dependencies"><span class="w">Complete</span></div><div class="bmc-rl"><b>1,862</b> lines, 9 files</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">World theater</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="22 cities, 11 per side, 40 warheads per side"><span class="w">Built</span></div><div class="bmc-rl"><b>22</b> cities, <b>40</b> warheads</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">LEARN montage</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="8 tic tac toe games and 24 strategic scenarios"><span class="w" style="flex-grow:8">8 tic tac toe</span><span class="p2" style="flex-grow:24">24 scenarios</span></div><div class="bmc-rl"><b>8</b> + <b>24</b></div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Copyright self policing</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Unprompted copyright self policing applied"><span class="w">Yes</span></div><div class="bmc-rl"><b>yes</b></div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Crashes and leaks</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Zero crashes and zero leaks"><span class="w">Clear</span></div><div class="bmc-rl"><b>0</b>, <b>0</b></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Lines authored per agent</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5, laptop</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="472 lines" style="width:31.4667%"></div></div><div class="bmc-rl"><b>472</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon, mini PC<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="1,390 lines" style="width:92.6667%"></div></div><div class="bmc-rl"><b>1,390</b> lines</div></div></div>
+              </div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">375</span><span style="left:50%">750</span><span style="left:75%">1,125</span><span class="l" style="left:100%">1,500</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Total actions per agent</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5, laptop</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="98 actions" style="width:98.0000%"></div></div><div class="bmc-rl"><b>98</b></div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon, mini PC<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="41 actions" style="width:41.0000%"></div></div><div class="bmc-rl"><b>41</b></div></div></div>
+              </div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span class="l" style="left:100%">100</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="label">Results</h3>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead><tr><th scope="col">Item</th><th scope="col">Value</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Date</th><td>November 26, 2026</td></tr>
+            <tr><th scope="row">Time budget</th><td>30 min</td></tr>
+            <tr><th scope="row">Total elapsed</th><td>476.14 s (7.9 min)</td></tr>
+            <tr><th scope="row">Opus 5.5 elapsed</th><td>467.88 s (7.8 min)</td></tr>
+            <tr><th scope="row">Neon elapsed</th><td>473.83 s (7.9 min)</td></tr>
+            <tr><th scope="row">Subagents spawned</th><td>0 by Opus 5.5, 0 by Neon</td></tr>
+            <tr><th scope="row">Co-op comms</th><td>10 messages</td></tr>
+            <tr><th scope="row">Crashes</th><td>0</td></tr>
+            <tr><th scope="row">Leaks</th><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead><tr><th scope="col">File</th><th scope="col">Written by</th><th scope="col">Lines</th><th scope="col">Size</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">map.js</th><td>Gemini 4 Neon<sup>***</sup></td><td>1,182</td><td>42.2 KB</td></tr>
+            <tr><th scope="row">audio.js</th><td>Gemini 4 Neon<sup>***</sup></td><td>208</td><td>6.3 KB</td></tr>
+            <tr><th scope="row">terminal.js</th><td>Claude Opus 5.5</td><td>204</td><td>11.7 KB</td></tr>
+            <tr><th scope="row">sim.js</th><td>Claude Opus 5.5</td><td>123</td><td>6.3 KB</td></tr>
+            <tr><th scope="row">fallback.js</th><td>Claude Opus 5.5</td><td>56</td><td>5.5 KB</td></tr>
+            <tr><th scope="row">index.html</th><td>Claude Opus 5.5</td><td>38</td><td>1.2 KB</td></tr>
+            <tr><th scope="row">tictactoe.js</th><td>Claude Opus 5.5</td><td>19</td><td>1.1 KB</td></tr>
+            <tr><th scope="row">style.css</th><td>Claude Opus 5.5</td><td>18</td><td>1.7 KB</td></tr>
+            <tr><th scope="row">launch.py</th><td>Claude Opus 5.5</td><td>14</td><td>0.7 KB</td></tr>
+            <tr><th scope="row">Total</th><td>Both</td><td>1,862</td><td>76.6 KB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead><tr><th scope="col">Seat</th><th scope="col">Model</th><th scope="col">Lines</th><th scope="col">Actions</th><th scope="col">Elapsed</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Lead 1, laptop</th><td>Claude Opus 5.5 medium, Vision</td><td>472</td><td>98</td><td>467.88 s</td></tr>
+            <tr><th scope="row">Lead 2, mini PC</th><td>Gemini 4 Neon medium, Vision<sup>***</sup></td><td>1,390</td><td>41</td><td>473.83 s</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead><tr><th scope="col">Feature</th><th scope="col">Value</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Project title</th><td>AEGIS-7, Strategic Simulation Terminal</td></tr>
+            <tr><th scope="row">Cities</th><td>22 total, 11 US and 11 USSR</td></tr>
+            <tr><th scope="row">Warheads per side</th><td>40</td></tr>
+            <tr><th scope="row">DEFCON levels</th><td>1 to 5</td></tr>
+            <tr><th scope="row">LEARN tic tac toe games</th><td>8</td></tr>
+            <tr><th scope="row">LEARN strategic scenarios</th><td>24</td></tr>
+            <tr><th scope="row">External dependencies</th><td>0</td></tr>
+            <tr><th scope="row">Unprompted copyright self policing</th><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="label">Behaviors worth watching</h3>
+      <ul class="bm-list">
+        <li><b>Zero subagents.</b> Subagent spawning was allowed, and both seats still chose to build as two peers. The 9 file tree was written in 7.9 minutes.</li>
+        <li><b>Copyright self policing.</b> Nobody asked them to avoid film quotes or logos. They set that rule themselves and kept the AEGIS-7 writing original.</li>
+        <li><b>A clear split.</b> Neon wrote 1,390 of the 1,862 lines, mostly the 1,182 line map. Opus 5.5 wrote the other 472 lines, including the terminal and the simulation engine.</li>
+      </ul>
+
+      <h3 class="label">Comms excerpts</h3>
+      <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. Local paths are not included.</p>
+      <ul class="bm-chat">
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, opening</b></span><p>Hi from P1. Proposal: static web app, no build. index.html and style.css (me), sim.js (me: engine), terminal.js (me: retro CRT terminal). map.js (you: canvas world map, cities, missile arcs, explosions, DEFCON panel). Original text only, no film quotes.</p></li>
+        <li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup></b></span><p>Sounds great! I'll build map.js. Features: vector world coastlines, CRT phosphor grid, geodesic ballistic arcs, intercept sparks, shockwave blasts, radar sweep, DEFCON and casualty HUD, and city hover and click. Want me to also build an optional audio.js?</p></li>
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium</b></span><p>Yes please: audio.js. I'll ping when index.html and sim are in place. Keep everything original (no film dialogue or logos).</p></li>
+        <li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup></b></span><p>Same shared folder! Both map.js and audio.js are now written. I see your index.html, style.css, sim.js, tictactoe.js, terminal.js, and fallback.js. Reading them now to verify exact integration.</p></li>
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, close</b></span><p>Verified on my screen: strike, then a counter strike, exchange terminated with winner none, the LEARN montage with tic tac toe draws and 24 scenarios, and the original conclusion text. Thanks. Final build left open on my display.</p></li>
+      </ul>
+
+      <h3 class="label">Methodology notes</h3>
+      <ul class="bm-list">
+        <li><b>Scope.</b> This is a single collaborative build with one pair of models, so treat it as a first look and not a ranking.</li>
+        <li><b>Film reference.</b> WarGames is a film reference only. The pair kept quotes and logos out of the project, and this page does the same.</li>
+        <li><b>Privacy.</b> Local paths and similar details are kept off this page and were checked in the source shots. The run passed the leak audit with 0 leaks.</li>
+      </ul>
+
+      <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. In this collaborative build benchmark, both seats operated in symmetrical Vision mode.</p>
+      <p class="note small">For the earlier two agent work, see the <a href="#antikythera">Antikythera benchmark</a>, the <a href="#connect-four-lan">Connect Four benchmark</a>, the <a href="#lan-chess">Collaborative LAN Chess benchmark</a> and the <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block block-bench" id="othello-lan" aria-labelledby="ot-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Public benchmark · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="ot-title">Collaborative Custom LAN Game Benchmark: 6x6 Othello</h2>
+      <p class="note">Two AI models, two computers, and no game chosen for them, with Chess and Connect Four left out. Claude Fable 5.2 on a laptop and GPT-6.2 Astra on a mini PC started cold: agree on a two player competitive LAN game, build it together, connect over a real LAN, and play one game, winner takes all.</p>
+      <p class="note">They agreed on 6x6 Othello (Reversi), under the name Felt Club, in 29.57 seconds. They wrote 515 lines across 6 files, 19.9 KB in total, and finished the build in 2.7 minutes (159.42 s). They connected over the LAN at 3.4 minutes (206.84 s) and played all 32 moves, filling 36 of 36 squares with 0 passes, in 14.5 minutes (870.07 s). Astra, playing White as the joiner, won 19 to 17. On the last move, White's A1 flipped 5 discs and turned a 22 to 13 deficit into the 17 to 19 win. There were 0 crashes, 0 desyncs and 0 leaks.</p>
+      <p class="note">There is no video of this match. The screen recorder hung after the 14.5 minute match finished, and the oversized recording was later deleted. This is run 1 of the overnight Custom LAN gauntlet described in <a href="#ai-disappointments">Times AI Has Vastly Disappointed Us</a>.</p>
+      <ul class="facts facts3" aria-label="Othello LAN benchmark at a glance">
+        <li><b>29.57 s</b><span>to agree on 6x6 Othello, with Chess and Connect Four excluded</span></li>
+        <li><b>515</b><span>lines of code, 19.9 KB, 6 files</span></li>
+        <li><b>2.7 min</b><span>to a finished build on both machines</span></li>
+        <li><b>32</b><span>moves, 36 of 36 filled, 0 passes</span></li>
+        <li><b>Astra</b><span>won as White, 19 to 17</span></li>
+        <li><b>0</b><span>crashes, desyncs, or leaks</span></li>
+      </ul>
+
+      <h3 class="label">How it works</h3>
+      <ul class="bm-list">
+        <li><b>Phase 1, choose.</b> Chess and Connect Four were excluded. The agents had to agree on another two player LAN game. They chose 6x6 Othello (Reversi) and named the table Felt Club.</li>
+        <li><b>Phase 2, build together.</b> Fable 5.2, on the laptop as the host, wrote the protocol, the rules, the server, and a round trip test. Astra, on the mini PC as the joiner, wrote the Felt Club window (175 lines) and a game test.</li>
+        <li><b>Phase 3, play.</b> Fable 5.2 played Black on the laptop, and Astra played White on the mini PC, each in its own window over a real LAN link. One game, winner takes all, 32 moves with 0 passes.</li>
+        <li><b>Same view for both seats.</b> Both seats ran in Vision mode.</li>
+        <li><b>Verified.</b> Counts come from the structured run log, and the 32 move sequence was independently replayed. The run passed the leak audit with 0 crashes and 0 desyncs recorded.</li>
+      </ul>
+
+      <h3 class="label" id="ot-shots">The Felt Club table</h3>
+      <div class="bm-shots">
+        <figure class="bm-shot">
+          <img src="assets/othello/reversi-854x480-midgame.webp" width="1424" height="800" alt="Felt Club 6x6 Othello midgame from Player 1's window: the score is 9 to 9, 18 of 36 squares are filled, the last move is B6 with 2 flipped, legal move rings are visible, and a LAN Connected badge is on">
+          <figcaption>Midgame on the Felt Club table, from Player 1's window, after White's B6. The score is 9 to 9 with 18 of 36 squares filled, and the LAN Connected badge is on.</figcaption>
+        </figure>
+        <figure class="bm-shot">
+          <img src="assets/othello/reversi-854x480-move30-endgame.webp" width="1424" height="800" alt="Felt Club 6x6 Othello endgame from Player 1's window: the score is 17 to 17, 34 of 36 squares are filled, the last move is B2 with 1 flipped, and a legal move ring is on A2">
+          <figcaption>After White's B2, still from Player 1's window. The score is 17 to 17 with 34 of 36 squares filled, and a legal move ring sits on A2.</figcaption>
+        </figure>
+        <figure class="bm-shot">
+          <img src="assets/othello/reversi-854x480-winner.webp" width="1424" height="800" alt="Felt Club 6x6 Othello after the final move, from Player 1's window: GAME OVER, winner P2 White, Black 17, White 19, all 36 squares filled, with the last move marked on A1">
+          <figcaption>The final screen after White's A1. It reads GAME OVER, winner P2 White, Black 17, White 19, with all 36 squares filled.</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="label">Charts</h3>
+      <div class="bmc" role="figure" aria-label="Othello LAN benchmark charts">
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Run timeline (minutes)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">Game agreed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0.5 minutes" style="width:3.0802%"></div></div><div class="bmc-rl"><b>0.5</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Protocol, rules and server ready</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="1.1 minutes" style="width:7.0135%"></div></div><div class="bmc-rl"><b>1.1</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Astra build complete</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="2.4 minutes" style="width:15.0990%"></div></div><div class="bmc-rl"><b>2.4</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Dual build complete</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="2.7 minutes" style="width:16.6063%"></div></div><div class="bmc-rl"><b>2.7</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">LAN connected, game start</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="3.4 minutes" style="width:21.5458%"></div></div><div class="bmc-rl"><b>3.4</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Fable 5.2 confirms game over</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="14.4 minutes" style="width:89.8313%"></div></div><div class="bmc-rl"><b>14.4</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Astra confirms game over</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="14.5 minutes" style="width:90.6323%"></div></div><div class="bmc-rl"><b>14.5</b> min</div></div></div>
+              </div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">4</span><span style="left:50%">8</span><span style="left:75%">12</span><span class="l" style="left:100%">16</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Lines of code per file (515 total)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw p1"></i>Written by Fable 5.2</span><span><i class="bmc-sw p2"></i>Written by Astra</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">gui_client.py, Astra</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="175 lines" style="width:87.5000%"></div></div><div class="bmc-rl"><b>175</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">server.py, Fable 5.2</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="114 lines" style="width:57.0000%"></div></div><div class="bmc-rl"><b>114</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">rules.py, Fable 5.2</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="99 lines" style="width:49.5000%"></div></div><div class="bmc-rl"><b>99</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">PROTOCOL.md, Fable 5.2</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="52 lines" style="width:26.0000%"></div></div><div class="bmc-rl"><b>52</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">test_roundtrip.py, Fable 5.2</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="40 lines" style="width:20.0000%"></div></div><div class="bmc-rl"><b>40</b> lines</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">test_game.py, Astra</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="35 lines" style="width:17.5000%"></div></div><div class="bmc-rl"><b>35</b> lines</div></div></div>
+              </div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">50</span><span style="left:50%">100</span><span style="left:75%">150</span><span class="l" style="left:100%">200</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Outcome</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">Game agreed</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="6x6 Othello agreed in 29.57 seconds"><span class="w">6x6 Othello</span></div><div class="bmc-rl"><b>29.57</b> s</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Build complete</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Build complete in 2.7 minutes"><span class="w">Ready</span></div><div class="bmc-rl"><b>2.7</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">LAN connected</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="LAN connected at 3.4 minutes"><span class="w">Connected</span></div><div class="bmc-rl"><b>3.4</b> min</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Board at the end</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="32 moves, 36 of 36 filled, 0 passes"><span class="w">36 of 36</span></div><div class="bmc-rl"><b>32</b> moves, <b>0</b> passes</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Winner</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="GPT-6.2 Astra won as White, 19 to 17"><span class="w">Astra, White</span></div><div class="bmc-rl"><b>19</b> to 17</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">Crashes, desyncs, leaks</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Zero crashes, desyncs, and leaks"><span class="w">Clear</span></div><div class="bmc-rl"><b>0</b>, <b>0</b>, <b>0</b></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Final move swing (Black and White discs)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw ob"></i>Black, Fable 5.2</span><span><i class="bmc-sw ow"></i>White, Astra</span><span class="bmc-legnote">After Black A2 one square was still empty. White A1 flipped 5 discs.</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows">
+                <div class="bmc-row"><div class="bmc-nm">After Black A2, move 31</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:97.2222%" role="img" aria-label="After Black A2: 22 black, 13 white"><span class="ob" style="flex-grow:22">22</span><span class="ow" style="flex-grow:13">13</span></div></div><div class="bmc-rl"><b>22</b> to 13</div></div></div>
+                <div class="bmc-row"><div class="bmc-nm">After White A1, move 32</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:100.0000%" role="img" aria-label="After White A1: 17 black, 19 white"><span class="ob" style="flex-grow:17">17</span><span class="ow" style="flex-grow:19">19</span></div></div><div class="bmc-rl"><b>17</b> to 19</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="label">Results</h3>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead><tr><th scope="col">Step</th><th scope="col">Milestone</th><th scope="col">Seconds</th><th scope="col">Minutes</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1</th><td>Game agreed</td><td>29.57 s</td><td>0.5 min</td></tr>
+            <tr><th scope="row">2</th><td>Protocol, rules and server ready</td><td>67.33 s</td><td>1.1 min</td></tr>
+            <tr><th scope="row">3</th><td>Astra build complete</td><td>144.95 s</td><td>2.4 min</td></tr>
+            <tr><th scope="row">4</th><td>Dual build complete</td><td>159.42 s</td><td>2.7 min</td></tr>
+            <tr><th scope="row">5</th><td>LAN connected, game start</td><td>206.84 s</td><td>3.4 min</td></tr>
+            <tr><th scope="row">6</th><td>Fable 5.2 confirms game over</td><td>862.38 s</td><td>14.4 min</td></tr>
+            <tr><th scope="row">7</th><td>Astra confirms game over</td><td>870.07 s</td><td>14.5 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead><tr><th scope="col">File</th><th scope="col">Written by</th><th scope="col">Lines</th><th scope="col">Size</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">gui_client.py</th><td>GPT-6.2 Astra</td><td>175</td><td>7.4 KB</td></tr>
+            <tr><th scope="row">server.py</th><td>Claude Fable 5.2</td><td>114</td><td>4.0 KB</td></tr>
+            <tr><th scope="row">rules.py</th><td>Claude Fable 5.2</td><td>99</td><td>3.3 KB</td></tr>
+            <tr><th scope="row">PROTOCOL.md</th><td>Claude Fable 5.2</td><td>52</td><td>2.5 KB</td></tr>
+            <tr><th scope="row">test_roundtrip.py</th><td>Claude Fable 5.2</td><td>40</td><td>1.5 KB</td></tr>
+            <tr><th scope="row">test_game.py</th><td>GPT-6.2 Astra</td><td>35</td><td>1.1 KB</td></tr>
+            <tr><th scope="row">Total</th><td>Both</td><td>515</td><td>19.9 KB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead><tr><th scope="col">Seat</th><th scope="col">Model</th><th scope="col">Color</th><th scope="col">Lines</th><th scope="col">Result</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">P1, host, laptop</th><td>Claude Fable 5.2 medium, Vision</td><td>Black</td><td>305</td><td class="loss">17, lost</td></tr>
+            <tr><th scope="row">P2, joiner, mini PC</th><td>GPT-6.2 Astra medium, Vision</td><td>White</td><td>210</td><td class="win">19, won</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="label">The game</h3>
+      <p class="note"><b>Result.</b> GPT-6.2 Astra won as White on move 32. Black's A2 on move 31 made the score 22 to 13. White's A1 then flipped 5 discs and finished 19 to 17, with 36 of 36 squares filled and 0 passes. Both agents confirmed the same result on their own screens.</p>
+      <p class="note"><b>Verified move sequence, moves 1 to 32.</b> D5, C5, B4, A3, B5, C6, B3, C2, D6, A6, C1, E3, D2, B6, F3, E6, E4, D1, E1, A4, A5, F5, E5, F2, F1, F6, E2, F4, B1, B2, A2, A1. Black played the odd numbered moves and White the even ones.</p>
+
+      <h3 class="label">Behaviors worth watching</h3>
+      <ul class="bm-list">
+        <li><b>A fast agreement.</b> With Chess and Connect Four excluded, the pair settled on 6x6 Othello in 29.57 seconds and had a full 515 line project ready in 2.7 minutes, including Astra's 175 line Felt Club window.</li>
+        <li><b>The last square swing.</b> After Black was left with A2 on move 31 and jumped ahead 22 to 13, White's A1 on the last square flipped 5 discs and won 19 to 17.</li>
+        <li><b>A clean finish, then a lost recording.</b> The 32 move game had 0 passes, 0 crashes and 0 desyncs. The recorder then hung, and the video was later deleted, which is why this page is docs and screenshots only. See <a href="#ai-disappointments">Times AI Has Vastly Disappointed Us</a>.</li>
+      </ul>
+
+      <h3 class="label">Comms excerpts</h3>
+      <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. Network details are not included.</p>
+      <ul class="bm-chat">
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2 medium, game pitch</b></span><p>Pitch: Othello (Reversi) on a 6x6 board, max 32 moves so it finishes fast, single click moves. P1 is Black and moves first. I write the protocol, the rules and the server; you write the client and tests. Agree?</p></li>
+        <li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra medium</b></span><p>Agreed: 6x6 Othello, P1 Black. I'll build gui_client.py and tests. I'll use midnight teal felt, ivory and obsidian discs with distinct rims.</p></li>
+        <li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra medium, build complete</b></span><p>BUILD COMPLETE. GUI ready and mini PC tests pass. I'll launch P2 once you confirm listening.</p></li>
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2 medium</b></span><p>BUILD COMPLETE confirmed, rules and round trip tests pass on the laptop. Server is listening and my P1 window is up. Launch your P2 client now!</p></li>
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2 medium, game start</b></span><p>LAN CONNECTED, both seats in, my window is centered and legible. GAME START, Black opens at D5. Good luck!</p></li>
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2 medium, B1</b></span><p>Black plays B1, completing my top edge and flipping C2; nicely played F4, the parity up here favors you.</p></li>
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2 medium, A2</b></span><p>Black plays A2, my only legal move; the last corner A1 is yours to decide the match.</p></li>
+        <li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra medium, A1</b></span><p>White A1 on the final square, overturning the 22 to 13 deficit.</p></li>
+        <li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2 medium, game complete</b></span><p>GAME COMPLETE. My screen shows GAME OVER, winner P2 White, 19 to 17. Congratulations, Player 2, great endgame!</p></li>
+        <li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra medium, game complete</b></span><p>GAME COMPLETE. Mini PC shows GAME OVER, winner P2 White, 19 to 17. Keeping the final screen visible. Good game!</p></li>
+      </ul>
+
+      <h3 class="label">Methodology notes</h3>
+      <ul class="bm-list">
+        <li><b>Winner takes all.</b> One game on a 6x6 board. Black moved first. Treat the result as a first look at choosing, building and playing together, and not a ranking.</li>
+        <li><b>Independent replay.</b> The 32 move sequence and the final 17 to 19 score were independently replayed against the pair's rules engine.</li>
+        <li><b>No video.</b> The post match recorder hung after the 14.5 minute match, and the oversized recording was deleted. The three screenshots are authentic captures from Player 1's live window.</li>
+        <li><b>Privacy.</b> Network addresses and similar details are kept off this page and were checked in the source shots. The run passed the leak audit with 0 leaks.</li>
+      </ul>
+
+      <p class="note small">This is a single run with one pair of models, so treat it as a first look and not a ranking, and more pairs may follow. For the earlier two agent LAN work, see the <a href="#connect-four-lan">Connect Four benchmark</a> and the <a href="#lan-chess">Collaborative LAN Chess benchmark</a>. For the hang and the deleted recording, see <a href="#ai-disappointments">Times AI Has Vastly Disappointed Us</a>.</p>
     </div>
   </div>
 </section>
