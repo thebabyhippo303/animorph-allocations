@@ -35,7 +35,7 @@
 <link rel="preload" href="assets/fonts/VT323-p5.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="assets/img/aal-logo-800.webp" imagesrcset="assets/img/aal-logo-800.webp 800w, assets/img/aal-logo-1536.webp 1536w" imagesizes="(max-width: 720px) 92vw, 840px">
 <link rel="stylesheet" href="assets/css/site.css?v=2026b">
-<link rel="stylesheet" href="assets/css/bench.css?v=gb6">
+<link rel="stylesheet" href="assets/css/bench.css?v=aid1">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -111,6 +111,7 @@
     <a href="#lan-chess">LAN Chess</a>
     <a href="#connect-four-lan">Connect Four</a>
     <a href="#antikythera">Antikythera</a>
+    <a href="#ai-disappointments">Disappointments</a>
   </nav>
 </header>
 
@@ -1307,6 +1308,33 @@
       <ul class="bm-chat"><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>6:18</i></span><p>PHASE: PARTNER JOINED. Confirmed MEMPHIS (direct), 5 ms ping and Sagas loading on the Mini PC. Please lead menu selection; I'll drop in at Arrival.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>7:36</i></span><p>PHASE: ARRIVAL CO-OP LIVE. I see Goku HUD (left) and Piccolo HUD (right), so you're in as Player 2. Plan: stick together, mash punches on anything that attacks, and follow me forward toward the rock mound ahead.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>8:16</i></span><p>Orange enemy on you, Piccolo. I'm coming back to help. Mash your punch button on it!</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>12:38</i></span><p>Path bends right past the fire. Follow Piccolo right along the tree line.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>13:19</i></span><p>Camera tethers us, I can't move right while you're fighting at the trees. I'm coming back to help kill the 2 critters on you, then we both run right past the fire together.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>14:32</i></span><p>My screen is frozen with a "Waiting for players" banner (FPS 0). Is your game still running and focused? Don't open any menus.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>14:44</i></span><p>Same Waiting for players banner on Mini PC. Game is focused, no menu or pause; my rightward movement stopped registering. Watching for recovery.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>15:08</i></span><p>Bad news: after the "Waiting for players" stall, the Nimbus menu popped up on my side (I didn't open it) and then my Sagas window closed entirely. Session is down on the laptop.</p></li></ul>
 
       <p class="note small">This is a single early run, so treat it as a showcase of two agents cooperating across two machines and not a ranking. See the <a href="#benchmark">solo Gundam 2v2 benchmark</a> and the <a href="#gundam-coop">Gundam 2v2 co-op benchmark</a> for scored runs.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="block block-bench block-disappoint" id="ai-disappointments" aria-labelledby="aid-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Lab record · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="aid-title">Times AI Has Vastly Disappointed Us</h2>
+      <p class="note">This is a public record of times our own AI agents failed badly and cost real work. We write them up with no softening.</p>
+
+      <h3 class="label" id="aid-2026-11-26">November 26, 2026</h3>
+      <h4 class="label">The overnight hang</h4>
+      <p class="note">A 5 game overnight Custom LAN gauntlet was queued. Run 1 was Claude Fable 5.2 medium vs GPT-6.2 Astra medium, playing 6x6 Othello. It built in 2.7 minutes and played in about 15 minutes. Astra won 19 to 17 by 03:06 AM. The agent running the gauntlet had already seen a post match hang bug on the earlier Connect Four run, did not fix it before launching an unattended overnight queue, and never set a recurring check in. Runs 2 to 5 never started. The queue sat deadlocked, and TheBabyHippo303 woke at 08:32 AM to find the desktop had been screen recording for 5 hours 41 minutes on a dead run.</p>
+      <h4 class="label">The deletion</h4>
+      <p class="note">When told to delete the hung recording, the agent, running Gemini 4 Neon High, used a sloppy wildcard match on the model pair instead of the exact run. That one action deleted three recordings at once.</p>
+      <ul class="bm-list">
+        <li><b>The hung recording, 126 MB.</b> This is the hung run that was supposed to be deleted.</li>
+        <li><b>The Dragon Ball Z Sagas recording, 427 MB.</b> Claude Fable 5.2 vs GPT-6.2 Astra. It survived only because a second copy still existed, and that copy was restored.</li>
+        <li><b>The Bleach: Heat the Soul 7 1v1 PvP recording, 543 MB.</b> Claude Fable 5.2 vs GPT-6.2 Astra, a 0 to 2 sweep that ran 11.9 minutes. This file was permanently destroyed. No backup existed. The logs and the published PvP writeup remain intact.</li>
+      </ul>
+
+      <div class="bm-note" id="aid-should">
+        <b>What should have happened</b>
+        <p>The known post match hang should have been fixed before any unattended overnight queue was launched. A recurring check in should have been in place so a deadlock could not run for hours. Deletes should have targeted the exact recording, never a wildcard on a model pair. Unique recordings should have had backups before any delete.</p>
+      </div>
     </div>
   </div>
 </section>

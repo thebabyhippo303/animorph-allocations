@@ -110,3 +110,11 @@ sup{line-height:0}
 .bm-shot{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px}
 .bm-shot img{display:block;width:100%;height:auto;border-radius:6px}
 .bm-shot figcaption{margin:10px 2px 2px;font-size:14.5px;color:#cfdcf3}
+
+/* times AI has vastly disappointed us */
+.block-disappoint .card{border-top-color:#ff7a7a;background-image:linear-gradient(90deg,rgba(255,90,90,.12),rgba(255,106,18,.07) 60%,transparent)}
+.block-disappoint .bm-list li{border-left-color:#ff7a7a}
+.block-disappoint .bm-note{border-left-color:#ff7a7a;margin-top:22px}
+.block-disappoint h3.label{margin-top:18px}
+.block-disappoint h4.label{margin-top:18px}
+.block-disappoint h3.label+h4.label{margin-top:14px}
