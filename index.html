@@ -35,7 +35,7 @@
 <link rel="preload" href="assets/fonts/VT323-p5.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="assets/img/aal-logo-800.webp" imagesrcset="assets/img/aal-logo-800.webp 800w, assets/img/aal-logo-1536.webp 1536w" imagesizes="(max-width: 720px) 92vw, 840px">
 <link rel="stylesheet" href="assets/css/site.css?v=2026b">
-<link rel="stylesheet" href="assets/css/bench.css?v=gb5">
+<link rel="stylesheet" href="assets/css/bench.css?v=gb6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -108,6 +108,7 @@
     <a href="#benchmark">Benchmark</a>
     <a href="#gundam-coop">Co-Op Bench</a>
     <a href="#bleach-pvp">PvP Bench</a>
+    <a href="#lan-chess">LAN Chess</a>
   </nav>
 </header>
 
@@ -731,6 +732,156 @@
 
       <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. Image only models use the standard frame and burst sheet perception layer. For fairness in this 1v1 PvP series, both seats were set to the standard frame and burst sheet layer. In Set 1, the laptop seat Gemini 4 Hydrogen still invoked 10 local clips, and the mini PC seat, on frames only, won the set 2 to 1.</p>
       <p class="note small">This is five sets and 14 matches, so treat it as a first look at model behavior and not a ranking, and more sets may follow. For the earlier Gundam series, see the <a href="#benchmark">Cold Context Gundam 2v2 benchmark</a> and the <a href="#gundam-coop">Gundam 2v2 co-op benchmark</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block block-bench" id="lan-chess" aria-labelledby="chess-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Public benchmark · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="chess-title">Collaborative Local LAN Chess Benchmark</h2>
+      <p class="note">Two AI models, two computers, one empty project folder. Claude Opus 5.5 on a Linux laptop and Gemini 4 Neon<sup>***</sup> on a Linux mini PC each started cold with a single task: build a real local network chess game together, a centered 854 by 480 window with full chess rules and no chess solver, then play each other one game across the two machines by clicking squares on their own boards. It follows our <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a> and the Gundam series, and it tests building together as well as playing.</p>
+      <p class="note">They agreed on a shared protocol in 43 seconds, wrote 2,196 lines of code across 5 files, passed all 18 of their own tests, patched a live rendering bug between the two machines, and connected over a real LAN at 6.7 minutes. They then played 45 ply, 23 moves, of a Sicilian Najdorf English Attack, all through GUI clicks, until the 45 minute cap with material dead even. There were 0 crashes, 0 desyncs and 0 leaks.</p>
+      <ul class="facts facts3" aria-label="LAN chess benchmark at a glance">
+        <li><b>43 s</b><span>to agree on a shared protocol</span></li>
+        <li><b>2,196</b><span>lines of code, 78.9 KB, 5 files</span></li>
+        <li><b>18 of 18</b><span>tests passed, Kiwipete perft included</span></li>
+        <li><b>5.7 min</b><span>to finish building</span></li>
+        <li><b>45 ply</b><span>of Najdorf chess played by clicks</span></li>
+        <li><b>0</b><span>crashes, desyncs, or leaks</span></li>
+      </ul>
+
+      <h3 class="label">How it works</h3>
+      <ul class="bm-list">
+        <li><b>Phase 1, build together.</b> From TNRP 2.3.5 on two computers, the pair shared one project folder and a plain text comms channel. Opus 5.5 proposed owning the rules engine, the LAN server and the tests, and Neon proposed the same split on its own, so they agreed on it almost at once. Neon built the board window.</li>
+        <li><b>Phase 2, play.</b> Opus 5.5 played White on the laptop and Neon played Black on the mini PC, each in its own window, connected over a real LAN link. A single game, winner takes all, with a 45 minute cap on the whole run.</li>
+        <li><b>No solver.</b> The rules engine only checks that moves are legal. It has no move search or evaluation, so every move was chosen by a model and played by clicking squares.</li>
+        <li><b>Same view for both seats.</b> Both seats used the standard frame and burst sheet perception layer<sup>***</sup>.</li>
+        <li><b>Verified.</b> Counts come from the structured run log, the final board was checked against the screenshots below, and the run passed the leak audit with 0 crashes and 0 desyncs recorded.</li>
+      </ul>
+
+      <h3 class="label" id="lan-chess-shots">The finished board</h3>
+      <div class="bm-shots">
+        <figure class="bm-shot">
+          <img src="assets/chess/lan-chess-board-move23.webp" width="1424" height="861" alt="The custom 854 by 480 chess window as White at move 23, with vector Staunton pieces, a golden last move highlight, captured piece trays, move history and a green LAN Connected badge">
+          <figcaption>The window the pair built in 5.7 minutes, shown at move 23, 23. Rg1, after 45 ply. Vector Staunton pieces, a golden last move highlight, captured piece trays, a scrolling move history and a green LAN Connected badge.</figcaption>
+        </figure>
+        <figure class="bm-shot">
+          <img src="assets/chess/lan-chess-dual-panel-move23.webp" width="1920" height="1080" alt="The chess window centered between the live decision streams of Claude Opus 5.5 on the left and Gemini 4 Neon on the right">
+          <figcaption>The board centered between Opus 5.5's live decision stream on the left and Neon's on the right, about 44 minutes into the run. Proprietary tool details are hidden, and one line of network detail is blurred.</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="label">Charts</h3>
+      <div class="bmc" role="figure" aria-label="Collaborative LAN chess charts">
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Run timeline (minutes)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Roles and protocol agreed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0.7 minutes" style="width:1.4583%"></div></div><div class="bmc-rl"><b>0.7</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Rules engine, server and 18 tests passing</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="2.2 minutes" style="width:4.5833%"></div></div><div class="bmc-rl"><b>2.2</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Platform bug diagnosed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4.8 minutes" style="width:10.0000%"></div></div><div class="bmc-rl"><b>4.8</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">GUI client landed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4.8 minutes" style="width:10.0000%"></div></div><div class="bmc-rl"><b>4.8</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Build complete, server live</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="5.7 minutes" style="width:11.8750%"></div></div><div class="bmc-rl"><b>5.7</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Both machines connected over LAN</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="6.7 minutes" style="width:13.9583%"></div></div><div class="bmc-rl"><b>6.7</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Game starts, move 1</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="6.8 minutes" style="width:14.1667%"></div></div><div class="bmc-rl"><b>6.8</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Move 16, check</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="29.0 minutes" style="width:60.4167%"></div></div><div class="bmc-rl"><b>29.0</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Move 23, Rg1</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="43.3 minutes" style="width:90.2083%"></div></div><div class="bmc-rl"><b>43.3</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">45 minute cap reached</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="45.0 minutes" style="width:93.7500%"></div></div><div class="bmc-rl"><b>45.0</b> min</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">12</span><span style="left:50%">24</span><span style="left:75%">36</span><span class="l" style="left:100%">48</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Lines of code per file (2,196 total)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw p1"></i>Written by Opus 5.5</span><span><i class="bmc-sw p2"></i>Written by Neon</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Shared protocol spec, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="26 lines" style="width:1.7333%"></div></div><div class="bmc-rl"><b>26</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">Rules engine, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="383 lines" style="width:25.5333%"></div></div><div class="bmc-rl"><b>383</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">LAN server, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="141 lines" style="width:9.4000%"></div></div><div class="bmc-rl"><b>141</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">Test suite, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="197 lines" style="width:13.1333%"></div></div><div class="bmc-rl"><b>197</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">GUI client, Neon<sup>***</sup>, patched by Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="1449 lines" style="width:96.6000%"></div></div><div class="bmc-rl"><b>1,449</b> lines</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">375</span><span style="left:50%">750</span><span style="left:75%">1125</span><span class="l" style="left:100%">1500</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Outcome at the 45 minute cap</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw w"></i>Passed</span><span><i class="bmc-sw p1"></i>White, Opus 5.5</span><span><i class="bmc-sw p2"></i>Black, Neon</span><span class="bmc-legnote">Black's 23rd move was in flight at the cap and is not counted</span></div>
+          <div class="bmc-chart"><div class="bmc-body"><div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Tests</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="18 of 18 tests passed"><span class="w" style="flex-grow:18">18 pass</span></div><div class="bmc-rl"><b>18 of 18</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Moves played</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="White 23 moves, Black 22 moves"><span class="p1" style="flex-grow:23">White 23</span><span class="p2" style="flex-grow:22">Black 22</span></div><div class="bmc-rl"><b>45</b> ply</div></div></div><div class="bmc-row"><div class="bmc-nm">Crashes, desyncs, leaks</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="0 crashes, 0 desyncs, 0 leaks"><span class="n" style="flex-grow:1">0 recorded</span></div><div class="bmc-rl"><b>0, 0, 0</b></div></div></div></div></div></div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Material at the cap, dead even</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw p1"></i>Bishops</span><span><i class="bmc-sw mp"></i>Knights</span><span><i class="bmc-sw p2"></i>Pawns</span><span class="bmc-legnote">Both sides kept a queen, 2 rooks, a knight and 5 pawns</span></div>
+          <div class="bmc-chart"><div class="bmc-body"><div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Pieces captured by White</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Pieces captured by White: 2 bishops, 1 knight, 2 pawns"><span class="p1" style="flex-grow:2">Bishops 2</span><span class="mp" style="flex-grow:1">Knights 1</span><span class="p2" style="flex-grow:2">Pawns 2</span></div><div class="bmc-rl"><b>5</b> pieces</div></div></div><div class="bmc-row"><div class="bmc-nm">Pieces captured by Black</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Pieces captured by Black: 2 bishops, 1 knight, 2 pawns"><span class="p1" style="flex-grow:2">Bishops 2</span><span class="mp" style="flex-grow:1">Knights 1</span><span class="p2" style="flex-grow:2">Pawns 2</span></div><div class="bmc-rl"><b>5</b> pieces</div></div></div></div></div></div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Decision turns and actions per agent</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-pair"><div class="bmc-nm">Decision turns</div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 high, White, laptop</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="32 decision turns" style="width:20.0000%"></div></div><div class="bmc-rl"><b>32</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon high<sup>***</sup>, Black, mini PC</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0 decision turns" style="width:0.0000%"></div></div><div class="bmc-rl"><b>0</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Total actions</div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 high, White, laptop</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="156 total actions" style="width:97.5000%"></div></div><div class="bmc-rl"><b>156</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon high<sup>***</sup>, Black, mini PC</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="24 total actions" style="width:15.0000%"></div></div><div class="bmc-rl"><b>24</b></div></div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">40</span><span style="left:50%">80</span><span style="left:75%">120</span><span class="l" style="left:100%">160</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="note small">Neon logged 0 separate decision turns and 24 actions, because it coordinated through comms and tool actions without written out decision turns, so the turns chart is not a like for like comparison.</p>
+
+      <h3 class="label">Results</h3>
+      <h4 class="bm-th">Timeline</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Step</th><th>Milestone</th><th>Seconds</th><th>Minutes</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>1</th><td>Roles and protocol agreed</td><td>43.4 s</td><td>0.7 min</td></tr><tr><th>2</th><td>Rules engine, server and 18 tests passing</td><td>129.0 s</td><td>2.2 min</td></tr><tr><th>3</th><td>Platform bug diagnosed</td><td>285.3 s</td><td>4.8 min</td></tr><tr><th>4</th><td>GUI client landed</td><td>288.7 s</td><td>4.8 min</td></tr><tr><th>5</th><td>Build complete, server live</td><td>340.2 s</td><td>5.7 min</td></tr><tr><th>6</th><td>Both machines connected over LAN</td><td>401.6 s</td><td>6.7 min</td></tr><tr><th>7</th><td>Game starts, move 1</td><td>410.3 s</td><td>6.8 min</td></tr><tr><th>8</th><td>Move 16, check</td><td>1737.2 s</td><td>29.0 min</td></tr><tr><th>9</th><td>Move 23, Rg1</td><td>2598.1 s</td><td>43.3 min</td></tr><tr><th>10</th><td>45 minute cap reached</td><td>2701.6 s</td><td>45.0 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">What they built</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Part</th><th>Written by</th><th>Lines</th><th>Size</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Shared protocol spec</th><td>Opus 5.5</td><td>26</td><td>1.4 KB</td><td>Newline delimited JSON protocol over TCP</td></tr><tr><th>Rules engine</th><td>Opus 5.5</td><td>383</td><td>14.7 KB</td><td>Full chess rules, with no move search or evaluation</td></tr><tr><th>LAN server</th><td>Opus 5.5</td><td>141</td><td>4.8 KB</td><td>Authoritative LAN game server</td></tr><tr><th>Test suite</th><td>Opus 5.5</td><td>197</td><td>7.4 KB</td><td>18 automated tests</td></tr><tr><th>GUI client</th><td>Neon<sup>***</sup>, patched by Opus 5.5</td><td>1,449</td><td>50.5 KB</td><td>854 by 480 GTK3 and Cairo board with vector Staunton pieces</td></tr><tr><th>Total</th><td>Both</td><td><b>2,196</b></td><td><b>78.9 KB</b></td><td>5 files</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">Agents</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Seat</th><th>Model</th><th>Decision turns</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>White, host, laptop</th><td>Claude Opus 5.5 high, Vision</td><td>32</td><td>156</td></tr><tr><th>Black, joiner, mini PC</th><td>Gemini 4 Neon high, Vision<sup>***</sup></td><td>0</td><td>24</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="label">The game</h3>
+      <div class="bm-notes">
+        <div class="bm-note"><b>Opening and result</b><p>A Sicilian Defense, Najdorf Variation, English Attack. White castled long and Black castled short, so the kings sat on opposite wings, and both sides ran standard pawn storms. At the 45 minute cap 45 ply had been played, 23 White moves and 22 Black moves, and Black's 23rd move, Qh6, was in flight when the run ended. Material was dead even, a queen, 2 rooks, a knight and 5 pawns each, with 2 bishops, a knight and 2 pawns captured by each side. The game was unfinished, so there is no winner.</p></div>
+        <div class="bm-note"><b>Full move list</b><p>1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e5 7. Nb3 Be6 8. f3 Be7 9. Qd2 O-O 10. O-O-O Nbd7 11. g4 b5 12. g5 b4 13. Nd5 Nxd5 14. exd5 Bf5 15. Qxb4 Bxg5 16. Bxg5 Qxg5+ 17. Kb1 Qg6 18. Bd3 Bxd3 19. Rxd3 Rfc8 20. Qb7 Nf6 21. Rc3 Rcb8 22. Qc6 Rd8 23. Rg1</p></div>
+      </div>
+
+      <h3 class="label">Collaboration highlights</h3>
+      <div class="bm-notes">
+        <div class="bm-note"><b>Convergence in 43 seconds</b><p>With no assigned roles, Opus 5.5 proposed owning the engine, server and tests while Neon owned the board window, and Neon had independently proposed the same split. Neon answered: "Deal! Exact same split." Both then worked from one shared protocol file, and the rules engine, server and all 18 tests were passing 129 seconds in.</p></div>
+        <div class="bm-note"><b>A live bug, fixed with a file lock</b><p>When Opus 5.5 first ran Neon's board window on the laptop, it failed to draw, because the laptop lacked the gi-cairo bridge. Opus 5.5 diagnosed it, proposed drawing to an image surface and showing it through GdkPixbuf, and asked Neon to hold off editing the file while it patched only the drawing code. Neon agreed to keep its hands off the file. The patch, a test click of e2 to e4 and a live server followed in under a minute of the bug being found, and the build was done at 5.7 minutes.</p></div>
+        <div class="bm-note"><b>A board worth looking at</b><p>Neon's 1,449 line window drew its own vector Staunton pieces with outlines that read on both light and dark squares, a board that flips for each side, legal move dots, a promotion picker, captured piece trays, a scrolling move history, a LAN status badge and a two click resign.</p></div>
+        <div class="bm-note"><b>Real chess through clicks</b><p>Opus 5.5 narrated its calculation as it played. At move 13 it chose Nd5 after working out that taking on f6 would end equal. At move 16 it rejected Qxd6 because of Bxe3+ and recaptured with Bxg5. At move 21 it played Rc3 because Rxc8+ and Qxc8+ were threatened and a trade on c3 would lose to Qxa8+. At move 23 it played Rg1 to hit the queen on g6, take the g file and get the rook off h1, where Qg2 would have attacked it. Neon found Qxg5+ at move 16, then Qg6 threatening Bxc2+, and defended with Nf6, Rcb8 and Rd8 to reach even material.</p></div>
+      </div>
+
+      <h3 class="label">Comms excerpts</h3>
+      <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. Network details are not included.</p>
+      <ul class="bm-chat"><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 high</b></span><p>Proposed split: I own the rules engine, the LAN server and the tests. You own the GUI client, 854 by 480, GTK3 and Cairo. The protocol is newline JSON, spec written in the shared folder. The server sends full state including legal moves, so the GUI needs no rules. OK?</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon high<sup>***</sup></b></span><p>Deal! Exact same split. I'll build the GUI client to match the protocol. Reading it now, let me know once the engine and server are ready to test!</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 high</b></span><p>18 tests pass, perft including Kiwipete, castling, en passant, promotion, mate and stalemate, the 50 move rule, threefold repetition, insufficient material and a LAN round trip. Ping me when the GUI client is in so I can smoke test it locally.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 high</b></span><p>Smoke test on the laptop: the window opens centered, but drawing fails, because the laptop lacks the gi-cairo bridge. Fix: render to an image surface and show it through GdkPixbuf. I'll patch only the widget setup and draw code now. Please don't overwrite the file for about 30 seconds.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon high<sup>***</sup></b></span><p>Great catch! Hands off the GUI file while you patch the fallback. Ping me once it's tested and I'll sync and launch on the mini PC!</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 high</b></span><p>BUILD COMPLETE. Fallback patched and tested on the laptop: the GUI renders, I clicked e2 to e4 through the window and the opponent's reply appeared on my board. 18 of 18 tests pass. The LAN server is listening and my White window is up. Please sync and launch your client as Black.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon high<sup>***</sup></b></span><p>LAN CONNECTED! My 854 by 480 Black window is live on the mini PC and shows LAN Connected. Ready for our game, your move, White! Good luck!</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon high<sup>***</sup></b></span><p>16... Qxg5+ check on the board, your move, White!</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon high<sup>***</sup></b></span><p>Heads up P1: my client just showed "Reconnecting to LAN server" right as I clicked 23... Qh6! Is the server still running?</p></li></ul>
+      <p class="note small">That last message arrived as the 45 minute cap ended the laptop's session.</p>
+
+      <h3 class="label">Methodology notes</h3>
+      <ul class="bm-list">
+        <li><b>Two phases, one clock.</b> Building and playing shared a single 45 minute cap, so the 5.7 minutes spent building came out of playing time. At roughly 45 ply in the time left, a full game to checkmate would need a longer cap or a lower effort setting.</li>
+        <li><b>No winner.</b> The run ended at the cap with an unfinished game and even material, so this is a result about building together and playing sound chess, and not a win or loss.</li>
+        <li><b>Privacy.</b> Network addresses and similar details are redacted from the live panels and checked afterward, and the run passed the leak audit with 0 leaks.</li>
+      </ul>
+
+      <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. Image only models use the standard frame and burst sheet perception layer. In this run both seats used the standard frame and burst sheet layer, so neither side had a modality advantage.</p>
+      <p class="note small">This is a single run with one pair of models, so treat it as a first look at building together and not a ranking, and more pairs may follow. For earlier two agent work, see the <a href="#gundam-coop">Gundam 2v2 co-op benchmark</a> and the <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a>.</p>
     </div>
   </div>
 </section>

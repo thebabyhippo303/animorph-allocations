@@ -104,3 +104,9 @@ sup{line-height:0}
 .bmc-sw.p1,.bmc-stk .p1{background:linear-gradient(90deg,#d9560a,var(--aal-orange))}
 .bmc-sw.p2,.bmc-stk .p2{background:linear-gradient(90deg,#9b3aae,var(--aal-purple))}
 .bmc-stk .p2{color:#fff}
+
+/* lan chess benchmark screenshots */
+.bm-shots{display:grid;gap:18px;margin:8px 0 6px}
+.bm-shot{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px}
+.bm-shot img{display:block;width:100%;height:auto;border-radius:6px}
+.bm-shot figcaption{margin:10px 2px 2px;font-size:14.5px;color:#cfdcf3}
