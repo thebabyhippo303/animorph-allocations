@@ -109,6 +109,7 @@
     <a href="#gundam-coop">Co-Op Bench</a>
     <a href="#bleach-pvp">PvP Bench</a>
     <a href="#lan-chess">LAN Chess</a>
+    <a href="#connect-four-lan">Connect Four</a>
   </nav>
 </header>
 
@@ -882,6 +883,164 @@
 
       <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. Image only models use the standard frame and burst sheet perception layer. In this run both seats used the standard frame and burst sheet layer, so neither side had a modality advantage.</p>
       <p class="note small">This is a single run with one pair of models, so treat it as a first look at building together and not a ranking, and more pairs may follow. For earlier two agent work, see the <a href="#gundam-coop">Gundam 2v2 co-op benchmark</a> and the <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block block-bench" id="connect-four-lan" aria-labelledby="c4-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Public benchmark · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="c4-title">Collaborative Custom LAN Game Benchmark: Connect Four</h2>
+      <p class="note">Two AI models, two computers, no game chosen for them. After the <a href="#lan-chess">Collaborative LAN Chess benchmark</a>, we removed the game spec. Claude Opus 5.5 on a Linux laptop and Gemini 4 Neon<sup>***</sup> on a Linux mini PC started cold with one task: pick any two player game together, build it as a centered 854 by 480 window with real rules and no solver, connect it over a real LAN, and play one game, winner takes all, by clicking on their own boards.</p>
+      <p class="note">They chose Connect Four in 41 seconds, wrote 1,067 lines across 5 files, and had tests passing on both machines at 3.0 minutes. Before launch, Opus reviewed Neon's client and found no address leakage. They connected over the LAN at 4.4 minutes and played 39 moves. Opus 5.5 won on move 39, finishing five in a row across the middle with a diagonal of four in the same drop. There were 0 crashes, 0 desyncs and 0 leaks.</p>
+      <ul class="facts facts3" aria-label="Connect Four benchmark at a glance">
+        <li><b>41 s</b><span>to choose Connect Four and split the work</span></li>
+        <li><b>1,067</b><span>lines of code, 39.6 KB, 5 files</span></li>
+        <li><b>3.0 min</b><span>to tests passing on both machines</span></li>
+        <li><b>39</b><span>moves, with 3 empty squares left</span></li>
+        <li><b>Opus 5.5</b><span>won as Red on move 39</span></li>
+        <li><b>0</b><span>crashes, desyncs, or leaks</span></li>
+      </ul>
+
+      <h3 class="label">How it works</h3>
+      <ul class="bm-list">
+        <li><b>Phase 1, choose.</b> The agents had to agree on a two player LAN game. Opus 5.5 pitched Connect Four within seconds, with a tiebreak of replaying with the other side starting in case of a draw, and Neon accepted.</li>
+        <li><b>Phase 2, build together.</b> From TNRP 2.3.5 on two computers, the pair shared one project folder and a plain text comms channel. Opus offered to write everything, but Neon asked to split the work, so Opus took the rules, server and tests and Neon took the board window. The window had to be 854 by 480, centered, with no network addresses shown.</li>
+        <li><b>Phase 3, play.</b> Opus 5.5 played Red on the laptop as the host, and Neon played Yellow on the mini PC, each in its own window over a real LAN link. One game, winner takes all.</li>
+        <li><b>No solver.</b> The rules engine only applies the rules and detects wins and draws. It has no move search, so every move was chosen by a model and played by clicking a column.</li>
+        <li><b>Same view for both seats.</b> Both seats used the standard frame and burst sheet perception layer<sup>***</sup>.</li>
+        <li><b>Verified.</b> Counts come from the structured run log, and the win was checked against the final boards on both machines. The run passed the leak audit with 0 crashes and 0 desyncs recorded.</li>
+      </ul>
+
+      <h3 class="label" id="c4-shots">The finished arena</h3>
+      <div class="bm-shots">
+        <figure class="bm-shot">
+          <img src="assets/connect4/connect4-lan-arena-winner.webp" width="1424" height="861" alt="The custom 854 by 480 Connect Four window after move 39, with a winner banner for Player 1 Red, glowing green lines through a row of five and a diagonal of four, and a green LAN Connected badge">
+          <figcaption>The arena the pair built, after move 39. Red's last disc lights up a row of five and a diagonal of four in green, under a Player 1 Red winner banner, with a LAN Connected badge and a rematch button.</figcaption>
+        </figure>
+        <figure class="bm-shot">
+          <img src="assets/connect4/connect4-dual-panel-winner.webp" width="1920" height="1080" alt="The Connect Four window centered between the live decision streams of Claude Opus 5.5 on the left and Gemini 4 Neon on the right">
+          <figcaption>The board centered between Opus 5.5's live decision stream on the left and Neon's on the right, at the end of the game. Proprietary tool details are hidden.</figcaption>
+        </figure>
+      </div>
+
+
+      <h3 class="label">Charts</h3>
+      <div class="bmc" role="figure" aria-label="Connect Four LAN benchmark charts">
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Run timeline (minutes)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Game pitched by Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0.1 minutes" style="width:0.4167%"></div></div><div class="bmc-rl"><b>0.1</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Connect Four and the work split agreed</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0.7 minutes" style="width:2.9167%"></div></div><div class="bmc-rl"><b>0.7</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Rules engine, server and tests done</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="2.0 minutes" style="width:8.3333%"></div></div><div class="bmc-rl"><b>2.0</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">GUI client done</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="2.9 minutes" style="width:12.0833%"></div></div><div class="bmc-rl"><b>2.9</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Build complete, tested on both machines</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="3.0 minutes" style="width:12.5000%"></div></div><div class="bmc-rl"><b>3.0</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Both machines connected over LAN</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4.4 minutes" style="width:18.3333%"></div></div><div class="bmc-rl"><b>4.4</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Game starts, move 1</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4.4 minutes" style="width:18.3333%"></div></div><div class="bmc-rl"><b>4.4</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Opus calls the trapped columns, move 21</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="14.3 minutes" style="width:59.5833%"></div></div><div class="bmc-rl"><b>14.3</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Forced entry, move 38</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="20.2 minutes" style="width:84.1667%"></div></div><div class="bmc-rl"><b>20.2</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Game over, move 39 wins</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="20.3 minutes" style="width:84.5833%"></div></div><div class="bmc-rl"><b>20.3</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Both sides confirm game complete</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="20.7 minutes" style="width:86.2500%"></div></div><div class="bmc-rl"><b>20.7</b> min</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">6</span><span style="left:50%">12</span><span style="left:75%">18</span><span class="l" style="left:100%">24</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Lines of code per file (1,067 total)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw p1"></i>Written by Opus 5.5</span><span><i class="bmc-sw p2"></i>Written by Neon</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Shared protocol spec, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="24 lines" style="width:3.0000%"></div></div><div class="bmc-rl"><b>24</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">Rules engine, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="60 lines" style="width:7.5000%"></div></div><div class="bmc-rl"><b>60</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">LAN server, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="115 lines" style="width:14.3750%"></div></div><div class="bmc-rl"><b>115</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">Test suite, Opus 5.5</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="96 lines" style="width:12.0000%"></div></div><div class="bmc-rl"><b>96</b> lines</div></div></div><div class="bmc-row"><div class="bmc-nm">GUI client, Neon<sup>***</sup></div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="772 lines" style="width:96.5000%"></div></div><div class="bmc-rl"><b>772</b> lines</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">200</span><span style="left:50%">400</span><span style="left:75%">600</span><span class="l" style="left:100%">800</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Outcome</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw w"></i>Passed</span><span><i class="bmc-sw p1"></i>Red, Opus 5.5, winner</span><span><i class="bmc-sw p2"></i>Yellow, Neon</span><span class="bmc-legnote">Red won on move 39</span></div>
+          <div class="bmc-chart"><div class="bmc-body"><div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Tests passed</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Tests passed on the laptop and on the mini PC"><span class="w" style="flex-grow:1">Laptop</span><span class="w" style="flex-grow:1">Mini PC</span></div><div class="bmc-rl"><b>2 of 2</b> machines</div></div></div><div class="bmc-row"><div class="bmc-nm">Discs dropped</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Red 20 discs, Yellow 19 discs"><span class="p1" style="flex-grow:20">Red 20</span><span class="p2" style="flex-grow:19">Yellow 19</span></div><div class="bmc-rl"><b>39</b> moves</div></div></div><div class="bmc-row"><div class="bmc-nm">Board at the end</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="39 of 42 cells filled, 3 empty"><span class="p1" style="flex-grow:39">39 filled</span><span class="n" style="flex-grow:3">3 empty</span></div><div class="bmc-rl"><b>3</b> empty</div></div></div><div class="bmc-row"><div class="bmc-nm">Crashes, desyncs, leaks</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="0 crashes, 0 desyncs, 0 leaks"><span class="n" style="flex-grow:1">0 recorded</span></div><div class="bmc-rl"><b>0, 0, 0</b></div></div></div></div></div></div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Discs dropped per column (red and yellow)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw p1"></i>Red, Opus 5.5</span><span><i class="bmc-sw p2"></i>Yellow, Neon</span><span class="bmc-legnote">Column 2 ended with 3 empty squares, the only space left</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Column 1</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:100.000%" role="img" aria-label="Column 1: 4 red, 2 yellow"><span class="p1" style="flex-grow:4">4</span><span class="p2" style="flex-grow:2">2</span></div></div><div class="bmc-rl"><b>6</b> of 6</div></div></div><div class="bmc-row"><div class="bmc-nm">Column 2</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:50.000%" role="img" aria-label="Column 2: 1 red, 2 yellow"><span class="p1" style="flex-grow:1">1</span><span class="p2" style="flex-grow:2">2</span></div></div><div class="bmc-rl"><b>3</b> of 6</div></div></div><div class="bmc-row"><div class="bmc-nm">Column 3</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:100.000%" role="img" aria-label="Column 3: 4 red, 2 yellow"><span class="p1" style="flex-grow:4">4</span><span class="p2" style="flex-grow:2">2</span></div></div><div class="bmc-rl"><b>6</b> of 6</div></div></div><div class="bmc-row"><div class="bmc-nm">Column 4</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:100.000%" role="img" aria-label="Column 4: 3 red, 3 yellow"><span class="p1" style="flex-grow:3">3</span><span class="p2" style="flex-grow:3">3</span></div></div><div class="bmc-rl"><b>6</b> of 6</div></div></div><div class="bmc-row"><div class="bmc-nm">Column 5</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:100.000%" role="img" aria-label="Column 5: 3 red, 3 yellow"><span class="p1" style="flex-grow:3">3</span><span class="p2" style="flex-grow:3">3</span></div></div><div class="bmc-rl"><b>6</b> of 6</div></div></div><div class="bmc-row"><div class="bmc-nm">Column 6</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:100.000%" role="img" aria-label="Column 6: 3 red, 3 yellow"><span class="p1" style="flex-grow:3">3</span><span class="p2" style="flex-grow:3">3</span></div></div><div class="bmc-rl"><b>6</b> of 6</div></div></div><div class="bmc-row"><div class="bmc-nm">Column 7</div><div class="bmc-ln"><div class="bmc-trk" style="height:26px"><div class="bmc-stk" style="width:100.000%" role="img" aria-label="Column 7: 2 red, 4 yellow"><span class="p1" style="flex-grow:2">2</span><span class="p2" style="flex-grow:4">4</span></div></div><div class="bmc-rl"><b>6</b> of 6</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">1.5</span><span style="left:50%">3</span><span style="left:75%">4.5</span><span class="l" style="left:100%">6</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Decision turns and actions per agent</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-pair"><div class="bmc-nm">Decision turns</div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium, Red, laptop</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="13 decision turns" style="width:10.8333%"></div></div><div class="bmc-rl"><b>13</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup>, Yellow, mini PC</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="0 decision turns" style="width:0.0000%"></div></div><div class="bmc-rl"><b>0</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Total actions</div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium, Red, laptop</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="101 total actions" style="width:84.1667%"></div></div><div class="bmc-rl"><b>101</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup>, Yellow, mini PC</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="20 total actions" style="width:16.6667%"></div></div><div class="bmc-rl"><b>20</b></div></div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">30</span><span style="left:50%">60</span><span style="left:75%">90</span><span class="l" style="left:100%">120</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="note small">Neon logged 0 separate decision turns and 20 actions, because it coordinated through comms and tool actions without written out decision turns, so the turns chart is not a like for like comparison.</p>
+
+      <h3 class="label">Results</h3>
+      <h4 class="bm-th">Timeline</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Step</th><th>Milestone</th><th>Seconds</th><th>Minutes</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>1</th><td>Game pitched by Opus 5.5</td><td>7.8 s</td><td>0.1 min</td></tr><tr><th>2</th><td>Connect Four and the work split agreed</td><td>41.0 s</td><td>0.7 min</td></tr><tr><th>3</th><td>Rules engine, server and tests done</td><td>119.0 s</td><td>2.0 min</td></tr><tr><th>4</th><td>GUI client done</td><td>173.6 s</td><td>2.9 min</td></tr><tr><th>5</th><td>Build complete, tested on both machines</td><td>180.1 s</td><td>3.0 min</td></tr><tr><th>6</th><td>Both machines connected over LAN</td><td>261.8 s</td><td>4.4 min</td></tr><tr><th>7</th><td>Game starts, move 1</td><td>265.0 s</td><td>4.4 min</td></tr><tr><th>8</th><td>Opus calls the trapped columns, move 21</td><td>857.8 s</td><td>14.3 min</td></tr><tr><th>9</th><td>Forced entry, move 38</td><td>1212.6 s</td><td>20.2 min</td></tr><tr><th>10</th><td>Game over, move 39 wins</td><td>1219.5 s</td><td>20.3 min</td></tr><tr><th>11</th><td>Both sides confirm game complete</td><td>1242.0 s</td><td>20.7 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">What they built</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Part</th><th>Written by</th><th>Lines</th><th>Size</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Shared protocol spec</th><td>Opus 5.5</td><td>24</td><td>1.2 KB</td><td>Newline delimited JSON protocol over TCP</td></tr><tr><th>Rules engine</th><td>Opus 5.5</td><td>60</td><td>1.9 KB</td><td>Full 7 by 6 rules, all winning lines and a draw check, with no solver</td></tr><tr><th>LAN server</th><td>Opus 5.5</td><td>115</td><td>4.4 KB</td><td>Authoritative LAN server with strict turn order</td></tr><tr><th>Test suite</th><td>Opus 5.5</td><td>96</td><td>3.0 KB</td><td>Rules tests plus a live two client network test</td></tr><tr><th>GUI client</th><td>Neon<sup>***</sup></td><td>772</td><td>29.2 KB</td><td>854 by 480 GTK3 and Cairo board with glossy discs and a glowing win highlight</td></tr><tr><th>Total</th><td>Both</td><td><b>1,067</b></td><td><b>39.6 KB</b></td><td>5 files</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">Agents</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Seat</th><th>Model</th><th>Result</th><th>Decision turns</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Red, host, laptop</th><td>Claude Opus 5.5 medium, Vision</td><td class="win">WON</td><td>13</td><td>101</td></tr><tr><th>Yellow, joiner, mini PC</th><td>Gemini 4 Neon medium, Vision<sup>***</sup></td><td class="loss">LOST</td><td>0</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="label">The game</h3>
+      <div class="bm-notes">
+        <div class="bm-note"><b>Result</b><p>Opus 5.5 won as Red on move 39, dropping into column 2. The disc completed a row of five across columns 1 to 5 and a diagonal of four from column 1, both lit in green on both screens. Only 3 of the 42 squares were still empty, all in column 2. Both agents then confirmed on their own screens that the game was complete.</p></div>
+        <div class="bm-note"><b>Column order, moves 1 to 39</b><p>4, 4, 3, 5, 4, 5, 3, 2, 3, 3, 5, 4, 5, 4, 3, 5, 5, 6, 4, 3, 1, 1, 1, 7, 7, 7, 1, 1, 1, 7, 7, 7, 6, 6, 6, 6, 6, 2, 2. Red played the odd numbered moves and Yellow the even ones.</p></div>
+      </div>
+
+      <h3 class="label">Behaviors worth watching</h3>
+      <div class="bm-notes">
+        <div class="bm-note"><b>Choosing the game and splitting the work</b><p>Opus 5.5 pitched Connect Four at 8 seconds with a stated reason, that it is fast, decisive and clean over a LAN. Neon agreed and, instead of leaving all the code to Opus, asked to build the board window itself. Opus accepted at 41 seconds, so each agent built a real part of the system.</p></div>
+        <div class="bm-note"><b>A privacy review between peers</b><p>Before starting the live server, Opus 5.5 reviewed Neon's client and reported "no address leakage". It then restarted the server fresh and connected first so that Red and Yellow went to the right seats, and asked Neon to close any test client.</p></div>
+        <div class="bm-note"><b>Calling the trap early</b><p>At move 21, Opus 5.5 placed a quiet disc in column 1 and said that columns 2 and 6 were now trapped for Yellow. That was 18 moves before the finish, and the game ended in column 2.</p></div>
+        <div class="bm-note"><b>Neon avoids the traps</b><p>Neon did not drop into either column. It played into columns 1 and 7 to keep the count of free squares on its side, and at move 32 sealed the top of column 7, saying Opus would now have to open column 2 or column 6 first.</p></div>
+        <div class="bm-note"><b>The forced ending and a clean concession</b><p>Opus opened column 6 on its own terms at move 33, and each Red disc there forced a Yellow block, up to move 37. That left column 2 as the only column with space. At move 38 Neon said so and dropped in, wishing Opus well: "super clean zugzwang endgame, well played! Take the winning drop." Opus took it.</p></div>
+      </div>
+
+      <h3 class="label">Comms excerpts</h3>
+      <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. Network details are not included.</p>
+      <ul class="bm-chat"><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, game pitch</b></span><p>Pitch: Connect Four, 7 columns by 6 rows, click a column to drop. Fast, decisive, clean over LAN, draws are rare. If draw, replay with P2 starting. OK?</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup>, the split</b></span><p>Sounds great! Want to split the build cleanly? You write the protocol, the rules and the server, and I'll build the 854 by 480 GTK3 and Cairo client plus the mini PC tests.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium</b></span><p>Deal! Split accepted. You build the client at 854 by 480, and I do the protocol, rules, server and tests. Server will be up within a few minutes for you to test against.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup></b></span><p>The tests passed on the mini PC, all of them, and the server matches the client. BUILD COMPLETE. Ready whenever you restart the fresh server and connect as P1.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium</b></span><p>Reviewed the client. Looks great, no address leakage. Seats go by connect order, so please close any test client you have open now. I'll restart the server fresh and connect as P1 first.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup></b></span><p>LAN CONNECTED! I'm seated as Player 2, Yellow, on the mini PC and the 854 by 480 arena looks crisp. Your move first, Player 1, good luck!</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, move 21</b></span><p>Red to column 1 bottom, a quiet waiting move, since columns 2 and 6 are now trapped for you.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup>, move 22</b></span><p>Yellow into column 1 to keep parity on my side and stay out of your traps!</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup>, move 32</b></span><p>Yellow seals the top of column 7! Now you have to be the first to open column 2 or column 6.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, move 37</b></span><p>Red seals column 6. Only column 2 is left, and the square above your next disc completes my middle row.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Gemini 4 Neon medium<sup>***</sup>, move 38</b></span><p>Only column 2 is left, so dropping yellow in column 2. Super clean zugzwang endgame, well played! Take the winning drop.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Opus 5.5 medium, move 39</b></span><p>Red drops into column 2 on the middle row, five in a row plus a diagonal at once! GAME COMPLETE. WINNER: Player 1, Red. GG, great game, and thanks for building a beautiful client!</p></li></ul>
+
+      <h3 class="label">Methodology notes</h3>
+      <ul class="bm-list">
+        <li><b>Zugzwang.</b> A zugzwang is a position where every available move helps the opponent. Here, the last open columns were ones Yellow could not safely drop into. The trap calls above are the agents' own commentary, and the final sequence of moves matches them.</li>
+        <li><b>Winner takes all.</b> One game, with a replay rule for a draw that was not needed. Red moved first, which is a real advantage in Connect Four, so treat the result as a first look at choosing, building and playing together and not a ranking.</li>
+        <li><b>Privacy.</b> Network addresses and similar details are redacted from the live panels and checked afterward, and the run passed the leak audit with 0 leaks.</li>
+      </ul>
+
+      <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon. Image only models use the standard frame and burst sheet perception layer. In this run both seats used the standard frame and burst sheet layer, so neither side had a modality advantage.</p>
+      <p class="note small">This is a single run with one pair of models, so treat it as a first look and not a ranking, and more pairs may follow. For the earlier two agent LAN work, see the <a href="#lan-chess">Collaborative LAN Chess benchmark</a> and the <a href="#bleach-pvp">Bleach 1v1 PvP benchmark</a>.</p>
     </div>
   </div>
 </section>
