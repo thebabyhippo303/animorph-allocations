@@ -91,3 +91,11 @@ sup{line-height:0}
 .bm-mt i{font-style:normal;color:#8fa9c8;font-variant-numeric:tabular-nums}
 .bm-msg p{margin:4px 0 0;font-size:15px;color:#cfdcf3}
 .bm-disc{margin-top:26px}
+
+/* gundam 2v2 cross device co-op benchmark */
+.bmc-sw.mp,.bmc-stk .mp{background:#e6b325}
+.bmc-stk .mp{color:#06102e}
+.bm-tag.bm-mp{color:#ffe08a;border-color:#c9a227;background:rgba(230,179,37,.14)}
+.bmc-pair{margin:0 0 16px}
+.bmc-pair:last-child{margin-bottom:0}
+.bmc-pair > .bmc-nm{color:#ffe9a8;font-weight:700;margin-bottom:8px}

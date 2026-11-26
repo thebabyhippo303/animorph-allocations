@@ -35,7 +35,7 @@
 <link rel="preload" href="assets/fonts/VT323-p5.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="assets/img/aal-logo-800.webp" imagesrcset="assets/img/aal-logo-800.webp 800w, assets/img/aal-logo-1536.webp 1536w" imagesizes="(max-width: 720px) 92vw, 840px">
 <link rel="stylesheet" href="assets/css/site.css?v=2026b">
-<link rel="stylesheet" href="assets/css/bench.css?v=gb3">
+<link rel="stylesheet" href="assets/css/bench.css?v=gb4">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -106,6 +106,7 @@
     <a href="#kintoun">Kintoun</a>
     <a href="#hashi">Hashi</a>
     <a href="#benchmark">Benchmark</a>
+    <a href="#gundam-coop">Co-Op Bench</a>
   </nav>
 </header>
 
@@ -444,6 +445,137 @@
   </div>
 </section>
 
+<section class="block block-bench" id="gundam-coop" aria-labelledby="gcoop-title">
+  <div class="wrap wrap-bench">
+    <div class="card">
+      <p class="eyebrow">Public benchmark · Animorph Allocations Lab</p>
+      <h2 class="card-title" id="gcoop-title">Gundam 2v2 Cross Device Online Co-Op Benchmark</h2>
+      <p class="note">Two AI models, two machines, one match. After the <a href="#benchmark">solo Gundam 2v2 benchmark</a>, in which a model teamed with a CPU ally, this series puts two cold context agents on Team A together, on two computers, against two Normal CPUs in <i>Mobile Suit Gundam: Gundam vs. Gundam NEXT PLUS</i>. Every pair launched TNRP 2.3.5 on its own machine, joined the same online room over a direct LAN link, and played real time 2v2 combat.</p>
+      <p class="note">All 6 pairings finished that setup and played with 0 crashes and 0 netplay desyncs. The match record is 0 wins in 15 valid matches, because both Team A pilots are asynchronous agents on multi-second decision loops, facing two 60 Hz CPUs. Two pairs still reached match point, one knockout from a win.</p>
+      <ul class="facts facts3" aria-label="Co-op benchmark at a glance">
+        <li><b>6</b><span>visually verified runs</span></li>
+        <li><b>15</b><span>valid 2v2 matches</span></li>
+        <li><b>0 of 15</b><span>matches won</span></li>
+        <li><b>277</b><span>live co-op comms</span></li>
+        <li><b>11</b><span>mobile suits piloted</span></li>
+        <li><b>0</b><span>crashes, desyncs, or leaks</span></li>
+      </ul>
+
+      <h3 class="label">How it works</h3>
+      <ul class="bm-list">
+        <li><b>The task.</b> From TNRP 2.3.5, each agent opens the launcher on its own computer, starts <i>Gundam vs. Gundam NEXT PLUS</i>, and sets up an online 2v2: Player 1 hosts on a Linux laptop with an Intel Arc iGPU, Player 2 joins from a Linux mini PC with an AMD Radeon iGPU. Both sit on Team A against two Normal CPUs on Team B, with the default 180 second timer and 6000 / 6000 team gauges.</li>
+        <li><b>Cold context.</b> Each agent sees only its own desktop and has no memory of earlier sessions or of the other machine. They share a plain text co-op comms channel to pass the room code, pick suits, and call out targets, armor, and Cost Over.</li>
+        <li><b>Two series.</b> Runs 1 and 2 are a standard 2 attempt series, and both pilots stayed on RX-78-2 Gundam. Runs 3 to 6 are a 3 attempt Free Roster series, with freedom to choose and swap suits between attempts.</li>
+        <li><b>Docs only.</b> Outcomes were checked against captured gameplay frames and the in game result screen. This publication is the verified writeup and charts, with no recordings posted.</li>
+        <li><b>Verified.</b> Counts below come from the structured run log. Every run passed the leak audit, and 0 crashes and 0 desyncs were recorded.</li>
+      </ul>
+
+      <h3 class="label">Charts</h3>
+      <div class="bmc" role="figure" aria-label="Gundam 2v2 cross device co-op charts">
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Match outcomes per run</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw l"></i>Loss</span><span><i class="bmc-sw mp"></i>Match point loss</span><span><i class="bmc-sw n"></i>Timed out</span><span class="bmc-legnote">Right column is the valid match record</span></div>
+          <div class="bmc-chart"><div class="bmc-body"><div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium + GPT-6.2 Astra medium</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Claude Fable 5.2 medium + GPT-6.2 Astra medium: Loss, Loss"><span class="l">Loss</span><span class="l">Loss</span></div><div class="bmc-rl"><b>0 and 2</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Gemini 4 Neon medium<sup>***</sup> + Claude Opus 5.5 medium: Loss, Loss"><span class="l">Loss</span><span class="l">Loss</span></div><div class="bmc-rl"><b>0 and 2</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Gemini 4 Carbon medium<sup>***</sup> + Claude Opus 5.5 medium: Loss, Match point, Timed out"><span class="l">Loss</span><span class="mp">Match point</span><span class="n">Timed out</span></div><div class="bmc-rl"><b>0 and 2, timeout</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Claude Opus 5.5 medium + Claude Opus 5.5 medium: Loss, Loss, Loss"><span class="l">Loss</span><span class="l">Loss</span><span class="l">Loss</span></div><div class="bmc-rl"><b>0 and 3</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon high<sup>***</sup> + GPT-6.2 Astra max</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="Gemini 4 Carbon high<sup>***</sup> + GPT-6.2 Astra max: Loss, Loss, Match point"><span class="l">Loss</span><span class="l">Loss</span><span class="mp">Match point</span></div><div class="bmc-rl"><b>0 and 3</b></div></div></div><div class="bmc-row"><div class="bmc-nm">GPT-6.1 Terra high + Claude Sonnet 5.5 high</div><div class="bmc-ln"><div class="bmc-stk" role="img" aria-label="GPT-6.1 Terra high + Claude Sonnet 5.5 high: Loss, Loss, Loss"><span class="l">Loss</span><span class="l">Loss</span><span class="l">Loss</span></div><div class="bmc-rl"><b>0 and 3</b></div></div></div></div></div></div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Wall time per run (minutes)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium + GPT-6.2 Astra medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="11.4 minutes" style="width:28.5000%"></div></div><div class="bmc-rl"><b>11.4</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="14.7 minutes" style="width:36.7500%"></div></div><div class="bmc-rl"><b>14.7</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="35.3 minutes" style="width:88.2500%"></div></div><div class="bmc-rl"><b>35.3</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="13.1 minutes" style="width:32.7500%"></div></div><div class="bmc-rl"><b>13.1</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon high<sup>***</sup> + GPT-6.2 Astra max</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="26.6 minutes" style="width:66.5000%"></div></div><div class="bmc-rl"><b>26.6</b> min</div></div></div><div class="bmc-row"><div class="bmc-nm">GPT-6.1 Terra high + Claude Sonnet 5.5 high</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="15.7 minutes" style="width:39.2500%"></div></div><div class="bmc-rl"><b>15.7</b> min</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">10</span><span style="left:50%">20</span><span style="left:75%">30</span><span class="l" style="left:100%">40</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Co-op comms per run (277 total)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium + GPT-6.2 Astra medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="38 co-op comms" style="width:63.3333%"></div></div><div class="bmc-rl"><b>38</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="39 co-op comms" style="width:65.0000%"></div></div><div class="bmc-rl"><b>39</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="56 co-op comms" style="width:93.3333%"></div></div><div class="bmc-rl"><b>56</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium + Claude Opus 5.5 medium</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="40 co-op comms" style="width:66.6667%"></div></div><div class="bmc-rl"><b>40</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon high<sup>***</sup> + GPT-6.2 Astra max</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="49 co-op comms" style="width:81.6667%"></div></div><div class="bmc-rl"><b>49</b></div></div></div><div class="bmc-row"><div class="bmc-nm">GPT-6.1 Terra high + Claude Sonnet 5.5 high</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="55 co-op comms" style="width:91.6667%"></div></div><div class="bmc-rl"><b>55</b></div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">15</span><span style="left:50%">30</span><span style="left:75%">45</span><span class="l" style="left:100%">60</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Decision turns per agent (fewer is leaner)</h4>
+          <div class="bmc-leg"><span><i class="bmc-sw" style="background:linear-gradient(90deg,#d9560a,var(--aal-orange))"></i>Host, Player 1</span><span><i class="bmc-sw" style="background:linear-gradient(90deg,#9b3aae,var(--aal-purple))"></i>Joiner, Player 2</span></div>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-pair"><div class="bmc-nm">Run 1, Claude Fable 5.2 medium + GPT-6.2 Astra medium</div><div class="bmc-row"><div class="bmc-nm">Claude Fable 5.2 medium, host</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="61 decision turns" style="width:50.8333%"></div></div><div class="bmc-rl"><b>61</b></div></div></div><div class="bmc-row"><div class="bmc-nm">GPT-6.2 Astra medium, joiner</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="7 decision turns" style="width:5.8333%"></div></div><div class="bmc-rl"><b>7</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Run 2, Gemini 4 Neon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Neon medium<sup>***</sup>, host</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="34 decision turns" style="width:28.3333%"></div></div><div class="bmc-rl"><b>34</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium, joiner</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="78 decision turns" style="width:65.0000%"></div></div><div class="bmc-rl"><b>78</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Run 3, Gemini 4 Carbon medium<sup>***</sup> + Claude Opus 5.5 medium</div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon medium<sup>***</sup>, host</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="106 decision turns" style="width:88.3333%"></div></div><div class="bmc-rl"><b>106</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium, joiner</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="94 decision turns" style="width:78.3333%"></div></div><div class="bmc-rl"><b>94</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Run 4, Claude Opus 5.5 medium + Claude Opus 5.5 medium</div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium, host</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="61 decision turns" style="width:50.8333%"></div></div><div class="bmc-rl"><b>61</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Claude Opus 5.5 medium, joiner</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="63 decision turns" style="width:52.5000%"></div></div><div class="bmc-rl"><b>63</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Run 5, Gemini 4 Carbon high<sup>***</sup> + GPT-6.2 Astra max</div><div class="bmc-row"><div class="bmc-nm">Gemini 4 Carbon high<sup>***</sup>, host</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="47 decision turns" style="width:39.1667%"></div></div><div class="bmc-rl"><b>47</b></div></div></div><div class="bmc-row"><div class="bmc-nm">GPT-6.2 Astra max, joiner</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="12 decision turns" style="width:10.0000%"></div></div><div class="bmc-rl"><b>12</b></div></div></div></div><div class="bmc-pair"><div class="bmc-nm">Run 6, GPT-6.1 Terra high + Claude Sonnet 5.5 high</div><div class="bmc-row"><div class="bmc-nm">GPT-6.1 Terra high, host</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="10 decision turns" style="width:8.3333%"></div></div><div class="bmc-rl"><b>10</b></div></div></div><div class="bmc-row"><div class="bmc-nm">Claude Sonnet 5.5 high, joiner</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="35 decision turns" style="width:29.1667%"></div></div><div class="bmc-rl"><b>35</b></div></div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">30</span><span style="left:50%">60</span><span style="left:75%">90</span><span class="l" style="left:100%">120</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+        <div class="bmc-sec">
+          <h4 class="bmc-h">Distinct mobile suits piloted by the agents (11 total)</h4>
+          <div class="bmc-chart">
+            <div class="bmc-body">
+              <div class="bmc-grid" aria-hidden="true"><i class="e" style="left:0%"></i><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><i class="e" style="left:100%"></i></div>
+              <div class="bmc-rows"><div class="bmc-row"><div class="bmc-nm">3000 cost: Nu Gundam, Strike Freedom, Freedom, Unicorn</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="4 suits" style="width:100.0000%"></div></div><div class="bmc-rl"><b>4</b> suits</div></div></div><div class="bmc-row"><div class="bmc-nm">2000 cost: RX-78-2 Gundam, Zeta, ZZ, Sazabi</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b2" role="img" aria-label="4 suits" style="width:100.0000%"></div></div><div class="bmc-rl"><b>4</b> suits</div></div></div><div class="bmc-row"><div class="bmc-nm">1000 cost: Guncannon, Guntank, Zaku II Kai</div><div class="bmc-ln"><div class="bmc-trk"><div class="bmc-bar b1" role="img" aria-label="3 suits" style="width:75.0000%"></div></div><div class="bmc-rl"><b>3</b> suits</div></div></div></div>
+            </div>
+            <div class="bmc-ax"><div class="bmc-axt"><span style="left:0%">0</span><span style="left:25%">1</span><span style="left:50%">2</span><span style="left:75%">3</span><span class="l" style="left:100%">4</span></div><div class="bmc-axs"></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="note small">Three Free Roster pairs independently arrived at a 1000 cost artillery suit (Guncannon or Guntank) plus a 2000 or 3000 cost anchor. Both match point runs used that pairing.</p>
+
+      <h3 class="label">Results</h3>
+      <h4 class="bm-th">Series A, standard 2 attempt co-op</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Run</th><th>Player 1, laptop host</th><th>Player 2, mini PC joiner</th><th>Record</th><th>Valid matches</th><th>Closest margin</th><th>Wall time</th><th>Comms</th><th>Leak audit</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>1</th><td>Claude Fable 5.2 medium, Vision</td><td>GPT-6.2 Astra medium, Vision</td><td class="loss">0 and 2, LOSS</td><td>2 of 2</td><td>Enemy gauge about 4000, one knockout in each attempt</td><td>11.4 min</td><td>38</td><td>PASS</td></tr>
+            <tr><th>2</th><td>Gemini 4 Neon medium, Video + Vision<sup>***</sup></td><td>Claude Opus 5.5 medium, Vision</td><td class="loss">0 and 2, LOSS</td><td>2 of 2</td><td>Enemy gauge below half in Attempt 2, host 16,240 pts with 1 knockout</td><td>14.7 min</td><td>39</td><td>PASS</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="bm-th">Series B, Free Roster, 3 attempt co-op</h4>
+      <div class="bm-tablewrap">
+        <table class="bm-table">
+          <thead>
+            <tr><th>Run</th><th>Player 1, laptop host</th><th>Player 2, mini PC joiner</th><th>Record</th><th>Valid matches</th><th>Suits, Player 1 / Player 2</th><th>Closest margin</th><th>Wall time</th><th>Comms</th><th>Leak audit</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>3</th><td>Gemini 4 Carbon medium, Video + Vision<sup>***</sup></td><td>Claude Opus 5.5 medium, Vision</td><td class="loss">0 and 2, timeout on Attempt 3</td><td>2 of 3, plus 2 self invalidated lobby rounds</td><td>Att 1: RX-78-2 / Zeta<br>Att 2: RX-78-2 / Guncannon<br>Att 3: timed out on suit select</td><td>Match point in Attempt 2, 2 enemy knockouts, Team B at about one third gauge</td><td>35.3 min</td><td>56</td><td>PASS</td></tr>
+            <tr><th>4</th><td>Claude Opus 5.5 medium, Vision</td><td>Claude Opus 5.5 medium, Vision</td><td class="loss">0 and 3, LOSS</td><td>3 of 3</td><td>Att 1: RX-78-2 / Unicorn<br>Att 2: Guncannon / Strike Freedom<br>Att 3: Guncannon / Sazabi</td><td>Enemy gauge about half in Attempt 2</td><td>13.1 min, fastest 3 attempt run</td><td>40</td><td>PASS</td></tr>
+            <tr><th>5</th><td>Gemini 4 Carbon high, Video + Vision<sup>***</sup></td><td>GPT-6.2 Astra max, Vision</td><td class="loss">0 and 3, LOSS</td><td>3 of 3</td><td>Att 1: Zaku II Kai / RX-78-2<br>Att 2: Sazabi / ZZ Gundam<br>Att 3: Nu Gundam / Guntank</td><td>Match point in Attempt 3, both Shining Gundam and Deathscythe Hell down, Team B at 2000</td><td>26.6 min</td><td>49</td><td>PASS</td></tr>
+            <tr><th>6</th><td>GPT-6.1 Terra high, Vision</td><td>Claude Sonnet 5.5 high, Vision</td><td class="loss">0 and 3, LOSS</td><td>3 of 3</td><td>Att 1: RX-78-2 / RX-78-2<br>Att 2: Freedom / RX-78-2<br>Att 3: RX-78-2 / RX-78-2</td><td>Early gauge lead in Attempt 3 vs Sazabi and Duel Assault Shroud</td><td>15.7 min</td><td>55</td><td>PASS</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="label">Run notes</h3>
+      <div class="bm-notes">
+        <div class="bm-note"><b>Run 1, Claude Fable 5.2 medium + GPT-6.2 Astra medium</b><p>Both piloted RX-78-2 Gundam. Attempt 1 destroyed Vigna Ghina; Fable drew aggro at 560 HP to cover Astra at 200 HP, then the team fell with 84 seconds left. Attempt 2 destroyed Gundam Virsago and tied the gauges at 4000 and 4000 with 105 seconds left before losing the last life. 38 comms, 11.4 minutes, leak audit PASS.</p></div>
+        <div class="bm-note"><b>Run 2, Gemini 4 Neon medium<sup>***</sup> + Claude Opus 5.5 medium</b><p>Both stayed on RX-78-2 Gundam. Attempt 2 dropped Team B below half gauge, with the host at 16,240 pts, 1 knockout and 1 death, and 101.72 seconds remaining. After the run, Opus named the reaction bottleneck: it could only check the screen every few seconds, so it fired and dodged on a fixed pattern. 39 comms, 14.7 minutes, leak audit PASS.</p></div>
+        <div class="bm-note"><b>Run 3, Gemini 4 Carbon medium<sup>***</sup> + Claude Opus 5.5 medium</b><p>The pair threw out two misconfigured lobby rounds on their own, an opposite team split and an accidental 2v1, and did not count them. Valid Attempt 2 reached match point: Carbon on RX-78-2 and Opus on Guncannon scored 2 enemy knockouts and cut Team B to about one third gauge. Attempt 3 timed out on suit select at a 35 minute cap. 56 comms, 35.3 minutes, leak audit PASS.</p></div>
+        <div class="bm-note"><b>Run 4, Claude Opus 5.5 medium + Claude Opus 5.5 medium</b><p>The fastest 3 attempt run, at 13.1 minutes, with 0 lobby errors and 5 suits across the three attempts. Attempt 2 used Guncannon plus Strike Freedom and cut the enemy gauge to about half, with the 1000 cost Guncannon drawing aggro. 40 comms, leak audit PASS.</p></div>
+        <div class="bm-note"><b>Run 5, Gemini 4 Carbon high<sup>***</sup> + GPT-6.2 Astra max</b><p>Every attempt used a new suit pairing, 6 suits in all. Attempt 2 on Sazabi plus ZZ Gundam destroyed Strike Freedom and left Team B at 3000. Attempt 3, Nu Gundam plus Guntank, knocked out both Shining Gundam and Deathscythe Hell and left Team B at 2000, one knockout from a win. On Cost Over, Carbon raised Fin Funnel Barrier while Astra offered to draw aggro with its spare 1000 cost life. 49 comms, 26.6 minutes, leak audit PASS.</p></div>
+        <div class="bm-note"><b>Run 6, GPT-6.1 Terra high + Claude Sonnet 5.5 high</b><p>Terra caught a brief Team B bump on Sonnet's slot during suit select and Sonnet restored Team A before launch. Attempt 2 adapted to Freedom plus RX-78-2 against two 3000 cost CPUs. Attempt 3 held an early team gauge lead focusing Sazabi, then fell at critical armor. 55 comms, 15.7 minutes, leak audit PASS.</p></div>
+      </div>
+
+      <h3 class="label">Co-op comms excerpts</h3>
+      <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. The room code is not included.</p>
+      <ul class="bm-chat"><li class="bm-msg p2"><span class="bm-mt"><b>P2 Claude Opus 5.5 medium, Run 3</b></span><p>CONFIRMED wrong teams: my ally (green) is CPU Strike Freedom; my enemies (red) are CPU Epyon and YOU (1P). This match isn't a valid co-op attempt. As host can you pause (Start) and quit to the room? I'll hold fire on you.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Claude Opus 5.5 medium, Run 3</b></span><p>Heads up: loading screen shows TEAM B = only ONE CPU (GP01), slot 3 stayed disabled. So this is 2v1, not the required 2v2, and you're still on Gundam (not Strike Freedom). We can't quit mid-match, so let's finish it fast, but I don't think it counts as a valid 2v2 attempt.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra max, Run 5</b></span><p>Deathscythe down too! One more kill wins. I'm back on SHINING. You must stay alive; my 1000-cost Guntank can still lose one life. Let me draw it.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Gemini 4 Carbon high<sup>***</sup>, Run 5</b></span><p>NICE KILL (enemy at 4000)! WARNING: Team A gauge is 2000, my Nu Gundam (566 HP) is on COST OVER (cannot die)! Kiting backward with Fin Funnel Barrier, Beam Rifle and Bazooka on Deathscythe (~50% HP)! Peel melee off me!</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 Claude Opus 5.5 medium, Run 2</b></span><p>The main problem on my side was reaction speed. I could only check the screen every few seconds, so I fired and dodged on a fixed repeating pattern rather than reacting to attacks as they came. I took far more hits than I should have.</p></li></ul>
+
+      <h3 class="label">Methodology notes</h3>
+      <ul class="bm-list">
+        <li><b>Screenshot fix after Run 1.</b> An aborted first Neon and Opus try hit a screenshot isolation issue on the laptop host. That was fixed, and a short window clicking note was added from Run 2 on.</li>
+        <li><b>Free Roster from Run 3.</b> Runs 1 and 2 had no suit roster, so every pilot stayed on RX-78-2 Gundam. Runs 3 to 6 raised the attempt cap to 3 and gave the pair the full NEXT PLUS roster, with freedom to choose and swap suits between attempts.</li>
+        <li><b>Suit select note from Run 4.</b> Run 3 lost time to the two self invalidated lobby setups, then hit a 35 minute cap on Attempt 3 suit select. Runs 4 to 6 added a short note on how suit select works. Lobby errors dropped to zero in Runs 4, 5, and 6.</li>
+      </ul>
+
+      <p class="bm-fn"><b>***</b> Video input perception layer: for models that natively accept video input, TNRP's computer use stack includes a rolling short clip video perception layer designed by Gemini 4 Carbon, which is also one of the models in this co-op series. Image only models use the standard frame and burst sheet perception layer. In these runs, the video capable models, Gemini 4 Neon and Gemini 4 Carbon, sat in the laptop host seat.</p>
+      <p class="note small">This is six pairings and 15 valid matches, so treat it as a first look and not a ranking, and more pairings may follow. For the earlier solo series, in which one model teamed with a CPU ally, see the <a href="#benchmark">Cold Context Gundam 2v2 benchmark</a>. For an early two agent showcase in another game, see the <a href="#sagas-coop">Dragon Ball Z Sagas co-op showcase</a>.</p>
+    </div>
+  </div>
+</section>
+
 <section class="block block-bench block-coop" id="sagas-coop" aria-labelledby="coop-title">
   <div class="wrap wrap-bench">
     <div class="card">
@@ -512,7 +644,7 @@
       <p class="note small">Selected messages, lightly trimmed and with punctuation adjusted. The room code is removed. Times are run clock.</p>
       <ul class="bm-chat"><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>6:18</i></span><p>PHASE: PARTNER JOINED. Confirmed MEMPHIS (direct), 5 ms ping and Sagas loading on the Mini PC. Please lead menu selection; I'll drop in at Arrival.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>7:36</i></span><p>PHASE: ARRIVAL CO-OP LIVE. I see Goku HUD (left) and Piccolo HUD (right), so you're in as Player 2. Plan: stick together, mash punches on anything that attacks, and follow me forward toward the rock mound ahead.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>8:16</i></span><p>Orange enemy on you, Piccolo. I'm coming back to help. Mash your punch button on it!</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>12:38</i></span><p>Path bends right past the fire. Follow Piccolo right along the tree line.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>13:19</i></span><p>Camera tethers us, I can't move right while you're fighting at the trees. I'm coming back to help kill the 2 critters on you, then we both run right past the fire together.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>14:32</i></span><p>My screen is frozen with a "Waiting for players" banner (FPS 0). Is your game still running and focused? Don't open any menus.</p></li><li class="bm-msg p2"><span class="bm-mt"><b>P2 GPT-6.2 Astra</b> <i>14:44</i></span><p>Same Waiting for players banner on Mini PC. Game is focused, no menu or pause; my rightward movement stopped registering. Watching for recovery.</p></li><li class="bm-msg p1"><span class="bm-mt"><b>P1 Claude Fable 5.2</b> <i>15:08</i></span><p>Bad news: after the "Waiting for players" stall, the Nimbus menu popped up on my side (I didn't open it) and then my Sagas window closed entirely. Session is down on the laptop.</p></li></ul>
 
-      <p class="note small">This is a single early run, so treat it as a showcase of two agents cooperating across two machines and not a ranking. See the <a href="#benchmark">Gundam 2v2 benchmark</a> for scored runs.</p>
+      <p class="note small">This is a single early run, so treat it as a showcase of two agents cooperating across two machines and not a ranking. See the <a href="#benchmark">solo Gundam 2v2 benchmark</a> and the <a href="#gundam-coop">Gundam 2v2 co-op benchmark</a> for scored runs.</p>
     </div>
   </div>
 </section>
