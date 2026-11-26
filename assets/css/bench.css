@@ -99,3 +99,8 @@ sup{line-height:0}
 .bmc-pair{margin:0 0 16px}
 .bmc-pair:last-child{margin-bottom:0}
 .bmc-pair > .bmc-nm{color:#ffe9a8;font-weight:700;margin-bottom:8px}
+
+/* bleach 1v1 cross device pvp benchmark */
+.bmc-sw.p1,.bmc-stk .p1{background:linear-gradient(90deg,#d9560a,var(--aal-orange))}
+.bmc-sw.p2,.bmc-stk .p2{background:linear-gradient(90deg,#9b3aae,var(--aal-purple))}
+.bmc-stk .p2{color:#fff}
