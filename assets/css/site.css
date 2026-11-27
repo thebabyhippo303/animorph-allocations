@@ -168,3 +168,18 @@ a{color:var(--accent)}a:hover{color:var(--title)}
 
 @media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}.btn:hover,.pcard:hover{transform:none}}
 .comps li:last-child:nth-child(odd){grid-column:1/-1}
+
+/* Lab update 2026-11-27: Musuhi project, chapter headers, four project cards */
+.pgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1000px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.pgrid{grid-template-columns:1fr}}
+.pcard-musuhi{--pc:#e58cff}
+.pglyph-m{font:700 44px/64px "Noto Serif CJK JP","Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;color:var(--title);text-shadow:0 0 16px rgba(229,140,255,.55)}
+.block-musuhi .card{border-top:4px solid #e58cff}
+.block-musuhi .hashi-kanji{width:auto;height:auto;font:700 48px/1.1 "Noto Serif CJK JP","Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;color:var(--title);text-shadow:0 0 16px rgba(229,140,255,.55)}
+.musuhi-fig{margin:0 0 16px}
+.chapter{padding:clamp(44px,7vw,72px) 0 4px}
+.chapter .wrap::before{content:"";display:block;width:min(420px,60%);height:2px;margin:0 auto 24px;background:linear-gradient(90deg,transparent,var(--border),transparent);opacity:.7}
+.chapter .sub{margin-bottom:8px}
+.hero-stats{grid-template-columns:repeat(4,minmax(0,1fr));max-width:880px}
+@media (max-width:720px){.hero-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
